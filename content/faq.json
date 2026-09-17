@@ -1,0 +1,66 @@
+{
+  "id": "faq",
+  "title": "FAQ",
+  "items": [
+    {
+      "q": "I can't sign in. What do I do?",
+      "a": "You probably see \"No associated ExamSoft account found.\" The External ID on your account needs to be corrected. Email Jesse Thompson at [jessetho@hawaii.edu](mailto:jessetho@hawaii.edu). An incognito window will not fix it."
+    },
+    {
+      "q": "What font settings should I use?",
+      "a": "Arial 12 for both Question Fonts and Answer Fonts. My Preferences, Question Creation tab."
+    },
+    {
+      "q": "When is my draft due?",
+      "a": "7 business days before the exam. OME needs the full week to proof the exam on an iPad, print backup copies, and prepare proctor materials."
+    },
+    {
+      "q": "What happens if my draft is late?",
+      "a": "A late draft compresses proofing, not the exam date. The proofing steps run in sequence and need the full 7 days."
+    },
+    {
+      "q": "Do I have to tag every question?",
+      "a": "Yes. At least one category per question. Untagged questions are invisible to category reporting."
+    },
+    {
+      "q": "How does partial credit work?",
+      "a": "Partial Credit caps how many choices a student can pick. +/- Partial Credit adds points for correct picks and subtracts for wrong ones. Mention it in the stem so students know."
+    },
+    {
+      "q": "Can I edit questions after the exam is posted?",
+      "a": "Not once a student has downloaded it. Errors after that point become post-exam scoring adjustments."
+    },
+    {
+      "q": "Who posts my exam?",
+      "a": "OME posts it. Do not post your own exam unless OME has asked you to."
+    },
+    {
+      "q": "What should Max Downloads be set to?",
+      "a": "Always 1. Standing JABSOM rule."
+    },
+    {
+      "q": "Can students open the exam before the proctor gives the password?",
+      "a": "No. The exam stays sealed until the proctor announces the password in the room. The password never goes in an email."
+    },
+    {
+      "q": "What is a resume code?",
+      "a": "If a student gets locked out of Examplify during an exam (usually from a button combination), they need a resume code to get back in. The proctor has it on the printed materials OME prepares."
+    },
+    {
+      "q": "Can I adjust scores on my own?",
+      "a": "Talk to OME first. Accepting a second correct answer or dropping an item changes the record for every student."
+    },
+    {
+      "q": "How quickly can I see exam results?",
+      "a": "Within minutes of students uploading their answer files."
+    },
+    {
+      "q": "Something looks like an ExamSoft bug. Who do I contact?",
+      "a": "Email Jesse Thompson. OME files all vendor tickets."
+    },
+    {
+      "q": "Where is the vendor documentation?",
+      "a": "The [Legacy Portal section on support.examsoft.com](https://support.examsoft.com/hc/en-us/sections/4730887054093-Legacy-Portal). Start there so you do not land on Enterprise articles."
+    }
+  ]
+}

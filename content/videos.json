@@ -1,0 +1,63 @@
+{
+  "id": "videos",
+  "title": "Training videos",
+  "items": [
+    {
+      "slug": "intro",
+      "navLabel": "Watch the intro",
+      "title": "Watch the intro",
+      "lede": "A 10-minute walkthrough of the ExamSoft workflow for course directors.",
+      "local": true,
+      "src": "assets/video/intro.mp4"
+    },
+    {
+      "slug": "new-semester",
+      "navLabel": "New semester prep",
+      "title": "Preparing for a new semester",
+      "provider": "youtube",
+      "id": "6g2hihZibKU",
+      "embed": true,
+      "note": "Semester setup overview for the Legacy portal."
+    },
+    {
+      "slug": "categories",
+      "navLabel": "Categories",
+      "title": "Categories",
+      "provider": "youtube",
+      "id": "wLELp4RW_24",
+      "embed": true,
+      "note": "How to use categories for tagging and reporting."
+    },
+    {
+      "slug": "exam-day-prep",
+      "navLabel": "Exam day prep",
+      "title": "Complete guide to prepping for exam day",
+      "provider": "youtube",
+      "id": "Ofh_rRoeFxs",
+      "embed": true,
+      "note": "From assessment creation through posting."
+    },
+    {
+      "slug": "score-adjustments",
+      "navLabel": "Score adjustments",
+      "title": "Universal question adjustments",
+      "provider": "youtube",
+      "id": "jtNFsqGRDi8",
+      "embed": true,
+      "note": "Adjusting scores after an exam."
+    },
+    {
+      "slug": "ome-training",
+      "navLabel": "OME training",
+      "title": "OME ExamSoft training recording",
+      "provider": "drive",
+      "id": "1kZHrJ6W3FH2XXttdue9xkA7OT1I09uFS",
+      "url": "https://drive.google.com/file/d/1kZHrJ6W3FH2XXttdue9xkA7OT1I09uFS/view",
+      "embed": false,
+      "recorded": "14 November 2022",
+      "status": "restricted",
+      "statusNote": "Shared with its owner only (omeit@hawaii.edu). Ask OME to widen sharing.",
+      "note": "An OME walkthrough of the portal from a live training session."
+    }
+  ]
+}

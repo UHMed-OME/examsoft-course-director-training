@@ -39,10 +39,8 @@
   /* Chrome that means nothing on paper. */
   .skip-link,
   .sidebar,
-  .topbar,
-  .theme-toggle,
-  .nav-toggle,
-  .backtotop,
+  .sidebar-toggle,
+  .sidebar-backdrop,
   .section-permalink {
     display: none !important;
   }
@@ -51,23 +49,10 @@
     display: block;
   }
 
-  .content {
+  .page {
     max-width: none;
     padding: 0;
     margin: 0;
-  }
-
-  /* Cover block */
-  .cover {
-    border: none;
-    padding: 0 0 6mm 0;
-    margin: 0 0 6mm 0;
-    border-bottom: 2pt solid #000;
-    break-after: page;
-  }
-
-  .cover__meta {
-    display: block;
   }
 
   /* Print-only table of contents, built by build.mjs. */
@@ -104,15 +89,15 @@
 
   /* Expose link targets, since a printed link is useless otherwise.
      Internal anchors are skipped — a page reference would be noise. */
-  .content a[href^="http"]::after {
+  .page a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 8.5pt;
     color: #333;
     word-break: break-all;
   }
 
-  .content a[href^="#"]::after,
-  .content a[href^="mailto:"]::after {
+  .page a[href^="#"]::after,
+  .page a[href^="mailto:"]::after {
     content: none;
   }
 

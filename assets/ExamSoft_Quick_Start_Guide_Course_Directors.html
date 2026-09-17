@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamSoft Quick Start Guide for Course Directors</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --manoa-green: #024731;
+    --kelly-green: #009A44;
+    --text: #1a1a1a;
+    --text-light: #555;
+    --border: #d0d0d0;
+    --bg-light: #f7f9f8;
+    --bg-callout: #eef6f1;
+    --bg-warn: #fff8e6;
+    --bg-critical: #fef2f2;
+    --border-callout: #009A44;
+    --border-warn: #d4a017;
+    --border-critical: #c53030;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.75in 0.85in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--text);
+    background: #fff;
+    max-width: 7in;
+    margin: 0 auto;
+    padding: 0.5in;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: var(--manoa-green);
+    page-break-after: avoid;
+  }
+
+  h1 { font-size: 22pt; line-height: 1.2; margin-bottom: 0.3em; }
+  h2 { font-size: 15pt; margin-top: 1.4em; margin-bottom: 0.5em; border-bottom: 2px solid var(--kelly-green); padding-bottom: 0.15em; }
+  h3 { font-size: 12pt; margin-top: 1em; margin-bottom: 0.35em; color: var(--manoa-green); }
+  h4 { font-size: 10.5pt; margin-top: 0.8em; margin-bottom: 0.25em; }
+
+  p { margin-bottom: 0.6em; }
+  a { color: var(--kelly-green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Cover page */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 9in;
+    text-align: center;
+    page-break-after: always;
+  }
+  .cover-bar {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, var(--manoa-green), var(--kelly-green));
+    margin-bottom: 2em;
+  }
+  .cover h1 {
+    font-size: 28pt;
+    margin-bottom: 0.15em;
+    border: none;
+  }
+  .cover .cover-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13pt;
+    color: var(--text-light);
+    margin-bottom: 2em;
+    font-weight: 400;
+  }
+  .cover .cover-org {
+    font-size: 11pt;
+    color: var(--manoa-green);
+    font-weight: 600;
+    margin-bottom: 0.3em;
+  }
+  .cover .cover-office {
+    font-size: 10pt;
+    color: var(--text-light);
+    margin-bottom: 0.3em;
+  }
+  .cover .cover-date {
+    font-size: 9.5pt;
+    color: var(--text-light);
+    margin-top: 0.5em;
+  }
+  .cover .cover-edition {
+    font-size: 9pt;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 0.3em;
+  }
+  .cover-bar-bottom {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--kelly-green), var(--manoa-green));
+    margin-top: 2em;
+  }
+
+  /* Section styling */
+  .section {
+    page-break-inside: avoid;
+    margin-bottom: 0.5em;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.6em 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  th {
+    background: var(--manoa-green);
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 8px;
+    font-size: 9pt;
+  }
+  td {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--bg-light); }
+  .table-caption {
+    font-size: 9pt;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 0.2em;
+  }
+
+  /* Callouts */
+  .callout {
+    border-left: 4px solid var(--border-callout);
+    background: var(--bg-callout);
+    padding: 8px 12px;
+    margin: 0.6em 0;
+    page-break-inside: avoid;
+  }
+  .callout-warn {
+    border-left-color: var(--border-warn);
+    background: var(--bg-warn);
+  }
+  .callout-critical {
+    border-left-color: var(--border-critical);
+    background: var(--bg-critical);
+  }
+  .callout-title {
+    font-weight: 700;
+    font-size: 9.5pt;
+    margin-bottom: 0.15em;
+  }
+  .callout p { margin-bottom: 0; font-size: 9.5pt; }
+
+  /* Steps */
+  ol.steps {
+    padding-left: 1.5em;
+    margin: 0.5em 0;
+  }
+  ol.steps li {
+    margin-bottom: 0.45em;
+  }
+  ol.steps li strong {
+    color: var(--manoa-green);
+  }
+
+  /* Key-value pairs */
+  .kv { margin: 0.4em 0; }
+  .kv-row {
+    display: flex;
+    margin-bottom: 0.2em;
+  }
+  .kv-key {
+    font-weight: 600;
+    min-width: 110px;
+    color: var(--manoa-green);
+  }
+
+  /* Figures */
+  figure {
+    margin: 0.7em 0;
+    page-break-inside: avoid;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+  }
+  figcaption {
+    font-size: 8.5pt;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 0.2em;
+  }
+  .figure-pair {
+    display: flex;
+    gap: 12px;
+    margin: 0.7em 0;
+    page-break-inside: avoid;
+  }
+  .figure-pair figure {
+    flex: 1;
+    margin: 0;
+  }
+  .figure-pair figure img {
+    width: 100%;
+  }
+  .figure-label {
+    font-weight: 600;
+    font-size: 8.5pt;
+    color: var(--manoa-green);
+    display: block;
+    margin-bottom: 0.15em;
+    font-style: normal;
+  }
+
+  /* Lists */
+  ul { padding-left: 1.3em; margin: 0.4em 0; }
+  ul li { margin-bottom: 0.3em; }
+
+  /* Contact cards */
+  .contact-card {
+    display: flex;
+    gap: 2em;
+    margin: 0.6em 0;
+    flex-wrap: wrap;
+  }
+  .contact {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .contact-name { font-weight: 700; color: var(--manoa-green); }
+  .contact-role { font-size: 9pt; color: var(--text-light); }
+  .contact-email { font-size: 9.5pt; }
+  .contact-note { font-size: 8.5pt; color: var(--text-light); margin-top: 0.2em; }
+
+  /* FAQ */
+  .faq-item {
+    margin-bottom: 0.7em;
+    page-break-inside: avoid;
+  }
+  .faq-q {
+    font-weight: 700;
+    color: var(--manoa-green);
+    font-size: 10pt;
+  }
+  .faq-a {
+    margin-top: 0.1em;
+    padding-left: 0;
+  }
+
+  /* Timeline */
+  .timeline-table td:first-child {
+    font-weight: 600;
+    color: var(--manoa-green);
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  .doc-footer {
+    margin-top: 2em;
+    padding-top: 0.5em;
+    border-top: 1px solid var(--border);
+    font-size: 8pt;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  /* Screenshot note */
+  .screenshot-note {
+    font-size: 8pt;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 0.15em;
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      padding: 0;
+      max-width: none;
+      font-size: 10pt;
+    }
+    a { color: var(--manoa-green); }
+    .cover { min-height: auto; height: 100vh; }
+    h2 { page-break-before: auto; }
+    .section { page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
+    .callout { page-break-inside: avoid; }
+    figure { page-break-inside: avoid; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER PAGE ============ -->
+<div class="cover">
+  <div class="cover-bar"></div>
+  <h1>ExamSoft Quick Start Guide</h1>
+  <div class="cover-subtitle">For course directors</div>
+  <div class="cover-org">John A. Burns School of Medicine</div>
+  <div class="cover-office">Office of Medical Education</div>
+  <div class="cover-date">September 2026</div>
+  <div class="cover-edition">ExamSoft Legacy portal</div>
+  <div class="cover-bar-bottom"></div>
+</div>
+
+<!-- ============ GETTING STARTED ============ -->
+<h2>Getting started</h2>
+
+<div class="kv">
+  <div class="kv-row"><span class="kv-key">Portal</span><span>www.examsoft.com/hawaiimed</span></div>
+  <div class="kv-row"><span class="kv-key">Institution ID</span><span>hawaiimed</span></div>
+  <div class="kv-row"><span class="kv-key">Sign-in</span><span>UH single sign-on. No separate ExamSoft password.</span></div>
+</div>
+
+<h3>First-time setup</h3>
+<ol class="steps">
+  <li><strong>Sign in to the portal.</strong> Go to www.examsoft.com/hawaiimed. Use your UH credentials. If you get "No associated ExamSoft account found," email Jesse Thompson (jessetho@hawaii.edu) to get your External ID corrected. An incognito window will not fix it.</li>
+  <li><strong>Set both fonts to Arial 12.</strong> Open My Preferences from the gear icon, go to the Question Creation tab, set both font fields to Arial 12, then Save. JABSOM standardizes on this.</li>
+  <li><strong>Open last year's exam.</strong> Find your course's most recent assessment and open it. You will build this year's version from it.</li>
+</ol>
+
+<figure>
+  <img src="../images/my-preferences-question-creation.png" alt="The My Preferences page in ExamSoft, Question Creation tab. Both font fields are set to Arial 12.">
+  <figcaption>My Preferences, Question Creation tab. Both font controls set to Arial 12.</figcaption>
+  <div class="screenshot-note">Screenshot may show a former staff member's name in the UI corner.</div>
+</figure>
+
+<!-- ============ QUESTIONS ============ -->
+<h2>Questions</h2>
+
+<p>Questions live in the question bank. Get there from the Questions menu or Create Questions on the portal home.</p>
+
+<div class="callout">
+  <div class="callout-title">Tag every question with at least one category</div>
+  <p>An untagged question is invisible to category reporting. Use the Add or Remove Category button while writing, or bulk-tag from the questions table.</p>
+</div>
+
+<div class="callout callout-warn">
+  <div class="callout-title">Apply tags, but leave the tree alone</div>
+  <p>The category tree is shared across all courses and about nine years of data. Renaming or moving a node changes what past reports mean. If your course needs a new category, ask OME to add it.</p>
+</div>
+
+<h3>Question types</h3>
+<table>
+  <thead><tr><th>Type</th><th>OME stance</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Multiple Choice</td><td>Preferred</td><td>Handles one or several correct answers.</td></tr>
+    <tr><td>True / False</td><td>Fine</td><td>Discriminates poorly. Use sparingly.</td></tr>
+    <tr><td>Fill in the Blank</td><td>Not preferable</td><td>Spelling is scored. One blank per question only. Produces more disputes.</td></tr>
+    <tr><td>Matching</td><td>Not preferable</td><td>Produces more post-exam adjustments.</td></tr>
+    <tr><td>Hot Spot</td><td>Good for images</td><td>Rectangle or polygon. Student drops a pin.</td></tr>
+    <tr><td>Drag and Drop</td><td>Good, with care</td><td>Does not score sequence. Partial credit subtracts.</td></tr>
+  </tbody>
+</table>
+
+<h3>Embedding vs. attaching images</h3>
+<p>You can place images in a question two ways. Choose based on whether students need the image on a printed hard copy.</p>
+<table>
+  <thead><tr><th></th><th>Embedded (inline)</th><th>Attached</th></tr></thead>
+  <tbody>
+    <tr><td><strong>How it appears</strong></td><td>Inline with the question text</td><td>Opens in a popup when the student clicks</td></tr>
+    <tr><td><strong>Hard copy printing</strong></td><td>Prints on the hard copy backup</td><td>Does NOT print on the hard copy backup</td></tr>
+    <tr><td><strong>Best for</strong></td><td>Images students must see to answer</td><td>Supplemental images or large reference files</td></tr>
+  </tbody>
+</table>
+
+<h3>Question groups (vignettes)</h3>
+<p>A question group lets you share a single clinical vignette or stimulus across several related questions. The vignette stays visible as students work through each question in the group.</p>
+
+<h3>Hot Spot</h3>
+<ul>
+  <li>Pick rectangle or polygon first. Polygon is better for irregular structures.</li>
+  <li>Drag the image onto the question. GIF, JPG, and PNG all work.</li>
+  <li>Drag to outline the correct region. Students can pinch to zoom on the iPad.</li>
+</ul>
+
+<figure>
+  <img src="../images/hot-spot-ipad-preview.jpg" alt="A Hot Spot question on an iPad in Examplify. A blue pin marks the student's answer on an MRI image.">
+  <figcaption>Hot Spot in Examplify preview. The blue pin is what the student places.</figcaption>
+</figure>
+
+<h3>Drag and Drop</h3>
+
+<div class="callout callout-critical">
+  <div class="callout-title">Drag and Drop does not score sequence</div>
+  <p>Order makes no difference to the score. If you need sequence scored, use Ordering instead.</p>
+</div>
+
+<div class="callout callout-warn">
+  <div class="callout-title">Partial credit subtracts points</div>
+  <p>Students gain points for correct answers dragged in and lose the same for wrong ones (floor is 0). Warn them in the stem.</p>
+</div>
+
+<div class="figure-pair">
+  <figure>
+    <span class="figure-label">Before</span>
+    <img src="../images/drag-and-drop-before.jpg" alt="Drag and Drop question showing five choices in the Possible Colors column, none moved.">
+  </figure>
+  <figure>
+    <span class="figure-label">After</span>
+    <img src="../images/drag-and-drop-after.jpg" alt="Same question after answering. Three choices moved to Selected Answers.">
+  </figure>
+</div>
+<figcaption>Drag and Drop before and after answering, in Examplify preview.</figcaption>
+
+<!-- ============ ATTACHMENTS ============ -->
+<h2>Attachments and media</h2>
+
+<p>An assessment-level attachment stays available for the whole exam (one file only, good for a formulary or reference sheet). A question-level attachment only opens on that question.</p>
+
+<div class="callout callout-critical">
+  <div class="callout-title">200 MB total per assessment</div>
+  <p>That ceiling covers every attachment and inline image in the assessment combined.</p>
+</div>
+
+<p class="table-caption">Per-file limits</p>
+<table>
+  <thead><tr><th>Type</th><th>Formats</th><th>Max size</th></tr></thead>
+  <tbody>
+    <tr><td>Images</td><td>GIF, JPG, PNG</td><td>3 MB (max 1920 x 1080)</td></tr>
+    <tr><td>Audio</td><td>MP3, MP4</td><td>15 MB</td></tr>
+    <tr><td>Video</td><td>MP4, AVI, MOV</td><td>150 MB</td></tr>
+    <tr><td>PDF</td><td>PDF</td><td>20 MB</td></tr>
+  </tbody>
+</table>
+
+<p>Resize images to 1920 x 1080 or smaller before uploading. Radiology and histology images are usually what pushes an exam toward the 200 MB ceiling.</p>
+
+<!-- ============ BUILDING ASSESSMENTS ============ -->
+<h2>Building assessments</h2>
+
+<div class="callout">
+  <div class="callout-title">Start from last year's exam</div>
+  <p>Most JABSOM assessments are built by duplicating the previous year's exam. That keeps question order, categorization, and scoring setup intact.</p>
+</div>
+
+<h3>Duplicate vs. repost</h3>
+<table>
+  <thead><tr><th></th><th>Duplicate</th><th>Repost</th></tr></thead>
+  <tbody>
+    <tr><td><strong>New exam ID</strong></td><td>Yes</td><td>No</td></tr>
+    <tr><td><strong>Can change questions</strong></td><td>Yes</td><td>No</td></tr>
+    <tr><td><strong>Reporting</strong></td><td>Its own reports</td><td>Combines with original</td></tr>
+    <tr><td><strong>Use for</strong></td><td>Next year's version</td><td>Make-up sitting</td></tr>
+  </tbody>
+</table>
+
+<h3>Working order</h3>
+<ol class="steps">
+  <li><strong>Duplicate last year's assessment.</strong> Name it with the academic year.</li>
+  <li><strong>Remove retired questions.</strong> Items the course no longer teaches or that performed badly.</li>
+  <li><strong>Add and tag new questions.</strong> Every new question needs at least one category.</li>
+  <li><strong>Check order and scoring.</strong> Confirm point values and partial credit settings.</li>
+  <li><strong>Add attachments.</strong> Stay under the 200 MB ceiling.</li>
+  <li><strong>Hand off to OME.</strong> 7 business days before the exam.</li>
+</ol>
+
+<h3>Text highlighting</h3>
+<p>ExamSoft includes a text highlighting toggle in the assessment settings. When enabled, students can highlight and strikethrough answer choices during the exam. Enable or disable it before posting.</p>
+
+<h3>Exam review settings</h3>
+<p>Exam review controls whether students can review their answers after submitting. You must choose the review setting before the exam is posted, because it cannot be changed afterward.</p>
+<table>
+  <thead><tr><th>Setting</th><th>When students see review</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Immediate</strong></td><td>Right after submitting their exam</td></tr>
+    <tr><td><strong>Delayed</strong></td><td>After OME enables it (gives time for scoring adjustments first)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ POSTING ============ -->
+<h2>Posting</h2>
+
+<div class="callout">
+  <div class="callout-title">OME posts your exam</div>
+  <p>Do not post your own exam unless OME has asked you to.</p>
+</div>
+
+<div class="callout callout-critical">
+  <div class="callout-title">Max Downloads is always 1</div>
+  <p>A standing JABSOM rule.</p>
+</div>
+
+<p>After OME posts the assessment, allow 5 to 10 minutes for the exam to appear in the iPad Examplify app. OME previews the exam on an iPad before posting to catch layout issues.</p>
+
+<!-- ============ TIMELINE ============ -->
+<h2>Exam timeline</h2>
+
+<table class="timeline-table">
+  <thead><tr><th>When</th><th>Who</th><th>What</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr><td>7 business days before</td><td>You</td><td>Draft complete</td><td>Questions written, ordered, categorized, and attached to the assessment.</td></tr>
+    <tr><td>7 to 2 business days before</td><td>OME</td><td>Proofing</td><td>OME previews on an iPad, flags issues, prints backup copies, and builds the proctor deck.</td></tr>
+    <tr><td>36 to 48 hours before</td><td>OME</td><td>Posted</td><td>Students can now download the exam onto their iPads.</td></tr>
+    <tr><td>Exam day</td><td>Proctor</td><td>Password announced</td><td>Examplify locks the iPad for the duration.</td></tr>
+    <tr><td>After upload</td><td>You</td><td>Results visible</td><td>The assessment overview updates as answer files come in.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-warn">
+  <div class="callout-title">Fix content before the download window opens</div>
+  <p>Once a student has downloaded the assessment, questions and answer keys lock. Errors after that point become scoring adjustments.</p>
+</div>
+
+<div class="callout callout-critical">
+  <div class="callout-title">Your draft is due 7 business days before the exam</div>
+  <p>OME needs the full seven days to proof the assessment, preview it on an iPad, print backup copies, and build proctor materials.</p>
+</div>
+
+<!-- ============ EXAM DAY ============ -->
+<h2>Exam day</h2>
+
+<p>Students sit the exam in Examplify on iPad. Once the exam starts, the app locks the device. Screenshots, copy-paste, and internet access all stop until the exam ends.</p>
+
+<h3>Lockdown and resume codes</h3>
+<p>If a student gets locked out of Examplify during an exam (usually from a button combination), they need a resume code to get back in. The proctor has it on the printed materials OME prepares. The exam password is announced in the room by the proctor. It never goes in an email.</p>
+
+<h3>Hard copy backups</h3>
+<p>OME prints backup copies during the proofing window. These are available in the exam room in case of a device failure that cannot be resolved with a resume code.</p>
+
+<!-- ============ AFTER THE EXAM ============ -->
+<h2>After the exam</h2>
+
+<p>Results appear in the assessment overview within minutes of students uploading their answer files.</p>
+
+<h3>Review your results</h3>
+<ol class="steps">
+  <li><strong>Assessment overview.</strong> Distribution and overall performance.</li>
+  <li><strong>Item analysis.</strong> Find questions the class missed or where distractors did not work. These are candidates for scoring adjustments or retirement.</li>
+  <li><strong>Category performance.</strong> Performance by topic across the cohort.</li>
+</ol>
+
+<h3>Adjusting scores</h3>
+<p>Talk to OME before adjusting scores. Accepting a second correct answer or dropping an item changes the record for every student. OME coordinates the adjustment to keep reporting consistent.</p>
+
+<!-- ============ CONTACTS ============ -->
+<h2>Contacts</h2>
+
+<div class="contact-card">
+  <div class="contact">
+    <div class="contact-name">Jesse Thompson</div>
+    <div class="contact-role">Faculty and technical support</div>
+    <div class="contact-email">jessetho@hawaii.edu</div>
+    <div class="contact-note">Office of Medical Education. First stop for portal access, permissions, and anything that is not working.</div>
+  </div>
+  <div class="contact">
+    <div class="contact-name">Angel Oasay</div>
+    <div class="contact-role">Exam Taker (student) account access</div>
+    <div class="contact-email">preclerk@hawaii.edu</div>
+    <div class="contact-note">OME pre-clerkship. Student accounts, rosters, and exam-taker records.</div>
+  </div>
+</div>
+
+<p class="table-caption">Where to take a problem</p>
+<table>
+  <thead><tr><th>Situation</th><th>Contact</th></tr></thead>
+  <tbody>
+    <tr><td>Can't sign in, or account-not-found error</td><td>Jesse Thompson, OME</td></tr>
+    <tr><td>Permissions wrong or a portal area missing</td><td>Jesse Thompson, OME</td></tr>
+    <tr><td>Need a new category in the tree</td><td>Jesse Thompson, OME</td></tr>
+    <tr><td>Student accounts or roster issues</td><td>Angel Oasay, OME pre-clerkship</td></tr>
+    <tr><td>Draft handoff, preview, or proctor materials</td><td>OME pre-clerkship staff</td></tr>
+    <tr><td>Something failing during an exam</td><td>The proctor, immediately</td></tr>
+    <tr><td>Suspected ExamSoft defect</td><td>Jesse Thompson (files the ticket)</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-critical">
+  <div class="callout-title">OME files vendor tickets</div>
+  <p>If something looks like an ExamSoft defect, send it to Jesse. Tickets from OME carry the institution context the vendor needs.</p>
+</div>
+
+<!-- ============ FAQ ============ -->
+<h2>Quick reference FAQ</h2>
+
+<div class="faq-item">
+  <div class="faq-q">I can't sign in. What do I do?</div>
+  <div class="faq-a">You probably see "No associated ExamSoft account found." The External ID on your account needs to be corrected. Email Jesse Thompson at jessetho@hawaii.edu. An incognito window will not fix it.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">When is my draft due?</div>
+  <div class="faq-a">7 business days before the exam. OME needs the full week to proof the exam on an iPad, print backup copies, and prepare proctor materials.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">What happens if my draft is late?</div>
+  <div class="faq-a">A late draft compresses proofing, not the exam date. The proofing steps run in sequence and need the full 7 days.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Do I have to tag every question?</div>
+  <div class="faq-a">Yes. At least one category per question. Untagged questions are invisible to category reporting.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">How does partial credit work?</div>
+  <div class="faq-a">Partial Credit caps how many choices a student can pick. +/- Partial Credit adds points for correct picks and subtracts for wrong ones. Mention it in the stem so students know.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Can I edit questions after the exam is posted?</div>
+  <div class="faq-a">Not once a student has downloaded it. Errors after that point become post-exam scoring adjustments.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Who posts my exam?</div>
+  <div class="faq-a">OME posts it. Do not post your own exam unless OME has asked you to.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Can students open the exam before the proctor gives the password?</div>
+  <div class="faq-a">No. The exam stays sealed until the proctor announces the password in the room. The password never goes in an email.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">What is a resume code?</div>
+  <div class="faq-a">If a student gets locked out of Examplify during an exam (usually from a button combination), they need a resume code to get back in. The proctor has it on the printed materials OME prepares.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Can I adjust scores on my own?</div>
+  <div class="faq-a">Talk to OME first. Accepting a second correct answer or dropping an item changes the record for every student.</div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="doc-footer">
+  <p>ExamSoft Quick Start Guide for Course Directors | John A. Burns School of Medicine | Office of Medical Education</p>
+  <p>ExamSoft Legacy portal | September 2026 | Version 1.1.0</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "id": "timeline",
+  "navLabel": "Exam timeline",
+  "title": "Exam timeline",
+  "blocks": [
+    {
+      "type": "timeline",
+      "items": [
+        {
+          "when": "7 business days before",
+          "who": "You",
+          "what": "Draft complete",
+          "detail": "Questions written, ordered, categorized, and attached to the assessment."
+        },
+        {
+          "when": "7 to 2 business days before",
+          "who": "OME",
+          "what": "Proofing",
+          "detail": "OME previews on an iPad, flags issues, prints backup copies, and builds the proctor deck."
+        },
+        {
+          "when": "36 to 48 hours before",
+          "who": "OME",
+          "what": "Posted",
+          "detail": "Students can now download the exam onto their iPads."
+        },
+        {
+          "when": "Exam day",
+          "who": "Proctor",
+          "what": "Password announced",
+          "detail": "Examplify locks the iPad for the duration."
+        },
+        {
+          "when": "After upload",
+          "who": "You",
+          "what": "Results visible",
+          "detail": "The assessment overview updates as answer files come in."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Fix content before the download window opens",
+      "text": "Once a student has downloaded the assessment, questions and answer keys lock. Errors after that point become scoring adjustments."
+    }
+  ]
+}

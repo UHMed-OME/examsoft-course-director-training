@@ -1,0 +1,82 @@
+{
+  "id": "your-account",
+  "navLabel": "Your account",
+  "title": "Your account",
+  "blocks": [
+    {
+      "type": "kv",
+      "items": [
+        { "k": "Portal", "v": "[www.examsoft.com/hawaiimed](https://www.examsoft.com/hawaiimed)" },
+        { "k": "Institution ID", "v": "`hawaiimed`" },
+        { "k": "Sign-in", "v": "UH single sign-on. No separate ExamSoft password." }
+      ]
+    },
+    { "type": "h3", "text": "Where to sign in" },
+    {
+      "type": "p",
+      "text": "The login page has two sections. Course directors and faculty use the **Administrators / Faculty** section at the bottom. Students use the **Exam Takers** section at the top. Click the Login button in the Administrators / Faculty box."
+    },
+    {
+      "type": "figure",
+      "src": "images/examsoft-login-annotated.png",
+      "alt": "The ExamSoft login page for JABSOM. Two sign-in boxes: Exam Takers at the top for students, Administrators / Faculty at the bottom for course directors.",
+      "caption": "The portal login page. Course directors use the bottom box.",
+      "source": "ei.examsoft.com, Sep 2026"
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Do not sign in under Exam Takers",
+      "text": "The Exam Takers login leads to the student download portal. If you land on a page asking you to download Examplify, you signed in under the wrong section."
+    },
+    { "type": "h3", "text": "If sign-in fails" },
+    {
+      "type": "p",
+      "text": "The error is usually \"No associated ExamSoft account found.\" The External ID on your account does not match what UH sends. Email Jesse Thompson at [jessetho@hawaii.edu](mailto:jessetho@hawaii.edu) to get it fixed. An incognito window will not help."
+    },
+    { "type": "h3", "text": "Set your fonts" },
+    {
+      "type": "callout",
+      "tone": "jabsom",
+      "title": "Set both font fields to Arial 12",
+      "text": "JABSOM standardizes on Arial 12. Do this before you write anything. My Preferences, Question Creation tab, set both fields, then Save."
+    },
+    {
+      "type": "figure",
+      "src": "images/my-preferences-question-creation.png",
+      "alt": "The My Preferences page in ExamSoft, Question Creation tab. Both font fields are set to Arial 12.",
+      "caption": "My Preferences, Question Creation tab. Both font controls set to Arial 12.",
+      "source": "OME, 2023",
+      "flag": "A former staff member's name is pixelated in the upper-right corner."
+    },
+    { "type": "h3", "text": "Permissions" },
+    {
+      "type": "p",
+      "text": "OME sets your access when your account is created. If a portal area is missing, check the table below and email OME."
+    },
+    {
+      "type": "table",
+      "cols": ["Area", "Setting", "Why"],
+      "rows": [
+        ["Questions", "Full or scoped to your folders", "Write and edit items."],
+        ["Assessments", "Full or scoped to your folders", "Build assessments."],
+        ["Categories", "Restricted", "Shared tree across all historical data. Apply tags, do not restructure."],
+        ["Reports", "Granted", "Item analysis and performance review."],
+        ["Grading", "Unchecked", "See warning below."]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "Grading stays unchecked",
+      "text": "Ticking Grading turns your account into a grader-only account and removes access you need. If you can see grading queues but not the question bank, email OME."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference",
+      "items": [
+        { "label": "Legacy Portal: Admin User Permissions", "url": "https://support.examsoft.com/hc/en-us/articles/11146896895885-Legacy-Portal-Admin-User-Permissions" }
+      ]
+    }
+  ]
+}

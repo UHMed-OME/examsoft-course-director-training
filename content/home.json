@@ -1,90 +1,43 @@
 {
   "id": "home",
-  "title": "Start here",
-  "lede": "You are a new co-course director. Here is what you own, what OME handles, and what to do this week.",
+  "supertitle": "ExamSoft Course Director Training Guide",
+  "title": "Getting started",
+  "lede": "First-time setup for new course directors.",
   "blocks": [
     {
-      "type": "p",
-      "text": "ExamSoft is where JABSOM writes exam questions, puts them into an assessment, delivers that assessment on student iPads, and reports on how the class did. You will spend most of your time in two places: the **question bank** and the **assessment** you build from it. Writing a question does not put it on an exam. Those are separate steps."
-    },
-    {
-      "type": "table",
-      "caption": "Who does what",
-      "cols": ["You", "OME pre-clerkship staff"],
-      "rows": [
-        ["Write and tag the questions", "Preview the assessment on a real iPad"],
-        ["Build the assessment (usually from last year's)", "Proof it, send corrections back to you"],
-        ["Hit the draft deadline", "Print two hard copies as a backup"],
-        ["Review results and adjust scoring", "Build the proctor PowerPoint, post the exam"]
+      "type": "steps",
+      "items": [
+        {
+          "t": "Sign in to the portal",
+          "d": "Go to [www.examsoft.com/hawaiimed](https://www.examsoft.com/hawaiimed). Use the **Administrators / Faculty** login at the bottom of the page, not the student login at the top.",
+          "fig": {
+            "src": "images/examsoft-login-annotated.png",
+            "alt": "ExamSoft login page showing two sections: Exam Takers at the top for students, Administrators / Faculty at the bottom for course directors.",
+            "caption": "Use the bottom login box."
+          }
+        },
+        {
+          "t": "Set both fonts to Arial 12",
+          "d": "Open My Preferences from the gear icon, go to the Question Creation tab, set both font fields to Arial 12, then Save.",
+          "fig": {
+            "src": "images/my-preferences-question-creation.png",
+            "alt": "My Preferences page in ExamSoft showing the Question Creation tab. Question Fonts and Answer Fonts are both set to Arial 12.",
+            "caption": "Both font fields set to Arial 12, then Save Preferences."
+          }
+        },
+        {
+          "t": "Open last year's exam",
+          "d": "Find your course's most recent assessment and open it. You will build this year's version from it."
+        }
       ]
     },
     {
       "type": "callout",
       "tone": "critical",
       "title": "Your draft is due 7 business days before the exam",
-      "text": "Every other date is scheduled backwards from that one. If you remember one thing from this page, make it this."
+      "text": "OME needs the full seven days to proof the assessment, preview it on an iPad, print backup copies, and build proctor materials."
     },
-    { "type": "h3", "text": "Do these three things this week" },
-    {
-      "type": "steps",
-      "items": [
-        {
-          "t": "Sign in to the portal",
-          "d": "Go to [the Legacy portal](https://ei.examsoft.com/GKWeb/login/hawaiimed). The institution ID is `hawaiimed`. It uses your UH login, so there is no separate ExamSoft password. If it will not let you in, see [Account and sign-in](docs/#account)."
-        },
-        {
-          "t": "Set your fonts to Arial 12",
-          "d": "Open My Preferences, go to the Question Creation tab, set both font fields to Arial 12, then Save. Do this before you write anything. The screenshot below shows what the page looks like."
-        },
-        {
-          "t": "Open last year's exam for your course",
-          "d": "You will almost certainly build from it rather than starting fresh. See [Building an assessment](docs/#building)."
-        }
-      ]
-    },
-    {
-      "type": "figure",
-      "src": "images/my-preferences-question-creation.png",
-      "alt": "The My Preferences page in the ExamSoft Legacy portal, Question Creation tab selected. Two font fields, Default Question Font and Default Answer Font, are both set to Arial 12. A name in the upper-right corner has been pixelated for privacy.",
-      "caption": "My Preferences, Question Creation tab. Both font fields set to Arial 12. Do this before writing your first question.",
-      "source": "OME onboarding document, 2023",
-      "flag": "A former staff member's name is pixelated in the upper-right corner. The screenshot is otherwise unmodified."
-    },
-    { "type": "h3", "text": "How an exam gets delivered" },
-    {
-      "type": "timeline",
-      "items": [
-        { "when": "7 business days before", "who": "You", "what": "Draft complete", "detail": "Questions written, ordered, categorized, attached. This is the handoff." },
-        { "when": "7 to 2 days before", "who": "OME staff", "what": "Proofing", "detail": "Staff preview on an iPad, send corrections back to you, re-preview, print backups, build proctor materials." },
-        { "when": "36 to 48 hours before", "who": "OME staff", "what": "Posted", "detail": "The download window opens so students can pull the exam onto their iPads." },
-        { "when": "Exam day", "who": "Proctor", "what": "Password announced", "detail": "Nobody can open the exam until then, even with the file downloaded." },
-        { "when": "Minutes after upload", "who": "You", "what": "Results visible", "detail": "The assessment overview shows how the class did." }
-      ]
-    },
-    {
-      "type": "callout",
-      "tone": "warn",
-      "title": "Three things that surprise new course directors",
-      "text": "Every question needs at least one category tag, or it disappears from reporting. Drag and Drop does not score the order answers are dragged in. And once the exam is posted and one student has downloaded it, the questions lock."
-    },
-    { "type": "h3", "text": "What the exam looks like on a student iPad" },
-    {
-      "type": "p",
-      "text": "Students take the exam in Examplify, which locks the iPad for the duration. Below is a Hot Spot question in preview mode. The student drops a pin on the image to answer."
-    },
-    {
-      "type": "figure",
-      "src": "images/hot-spot-ipad-preview.jpg",
-      "alt": "Photograph of an iPad in Examplify preview mode showing a Hot Spot question. A blue teardrop pin has been dropped on a greyscale MRI image. Controls for zoom and reset run down the left side.",
-      "caption": "A Hot Spot question in Examplify on an OME iPad. The blue pin is the student's answer.",
-      "source": "OME onboarding document, 2023"
-    },
-    { "type": "doccards", "title": "The reference" },
-    {
-      "type": "p",
-      "text": "Everything above is the short version. The reference covers each area in full, with the vendor's Legacy articles linked from every section."
-    },
-    { "type": "h3", "text": "Who to contact" },
+    { "type": "h3", "text": "Contacts" },
     { "type": "contacts" }
   ]
 }

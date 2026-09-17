@@ -1,0 +1,93 @@
+{
+  "id": "assessments",
+  "navLabel": "Assessments",
+  "title": "Building and posting",
+  "blocks": [
+    {
+      "type": "callout",
+      "tone": "jabsom",
+      "title": "Start from last year's exam",
+      "text": "Most JABSOM assessments are built by duplicating the previous year's exam. That keeps question order, categorization, and scoring setup intact."
+    },
+    { "type": "h3", "text": "Duplicate vs. repost" },
+    {
+      "type": "table",
+      "cols": ["", "Duplicate", "Repost"],
+      "rows": [
+        ["New Exam ID", "Yes", "No"],
+        ["Can change questions", "Yes", "No"],
+        ["Reporting", "Its own reports", "Combines with original"],
+        ["Use for", "Next year's version", "Make-up sitting"]
+      ]
+    },
+    { "type": "h3", "text": "Working order" },
+    {
+      "type": "steps",
+      "items": [
+        { "t": "Duplicate last year's assessment", "d": "Name it with the academic year." },
+        { "t": "Remove retired questions", "d": "Items the course no longer teaches or that performed badly." },
+        { "t": "Add and tag new questions", "d": "Every new question needs at least one category." },
+        { "t": "Check order and scoring", "d": "Confirm point values and partial credit settings." },
+        { "t": "Add attachments", "d": "Stay under the 200 MB ceiling." },
+        { "t": "Hand off to OME", "d": "7 business days before the exam." }
+      ]
+    },
+    { "type": "h3", "text": "Text highlighting" },
+    {
+      "type": "p",
+      "text": "Students can highlight and strikethrough text in Examplify. This is on by default but can be turned off per assessment under Options."
+    },
+    {
+      "type": "callout",
+      "tone": "jabsom",
+      "title": "Leave text highlighting on",
+      "text": "JABSOM keeps highlighting enabled for all exams."
+    },
+    { "type": "h3", "text": "Exam review settings" },
+    {
+      "type": "p",
+      "text": "Exam review controls whether students can see the questions and their answers after submitting. You configure this before posting under the Exam Review tab."
+    },
+    {
+      "type": "table",
+      "cols": ["Setting", "What students see", "When to use"],
+      "rows": [
+        ["Immediate", "Questions and answers right after uploading", "Formative quizzes where fast feedback matters"],
+        ["Delayed", "Questions and answers after a date you set", "Summative exams where you need time to review item analysis first"],
+        ["None", "Score only, no question review", "When the item bank must stay secure"]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "Choose the review setting before posting",
+      "text": "You cannot change the exam review setting after the assessment is posted. Decide up front whether students will see their answers immediately, on a delayed date, or not at all."
+    },
+    { "type": "h3", "text": "iPad preview" },
+    {
+      "type": "p",
+      "text": "After posting, the assessment takes 5 to 10 minutes to appear in the Examplify app on iPads. Plan accordingly when testing before exam day."
+    },
+    { "type": "h3", "text": "Posting" },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "OME posts your exam",
+      "text": "Do not post your own exam unless OME has asked you to."
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "Max Downloads is always 1",
+      "text": "A standing JABSOM rule."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference",
+      "items": [
+        { "label": "Legacy Portal: Duplicate or Repost an Assessment", "url": "https://support.examsoft.com/hc/en-us/articles/11166377941389-Legacy-Portal-Duplicate-or-Repost-an-Assessment" },
+        { "label": "Legacy Portal: Post a Question Bank Assessment", "url": "https://support.examsoft.com/hc/en-us/articles/11166374285453-Legacy-Portal-Post-a-Question-Bank-Assessment" }
+      ]
+    }
+  ]
+}

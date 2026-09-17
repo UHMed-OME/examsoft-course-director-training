@@ -1,75 +1,84 @@
 /* ==========================================================================
-   Design tokens — JABSOM Design System
-   --------------------------------------------------------------------------
-   Derived from the JABSOM Design System project (claude.ai/design).
-   Brand: Mānoa Green #024731, Kelly Green #009A44, Inter + Source Serif 4.
-   Every text/background pair meets WCAG 2.2 AA (4.5:1 body, 3:1 large/UI).
+   Design tokens — JABSOM Design System, glassmorphic variant (light only)
    ========================================================================== */
 
 :root {
-  color-scheme: light dark;
-
   /* --- Brand ------------------------------------------------------------ */
-  --c-brand:            #024731;  /* Mānoa Green, PANTONE 3435C */
+  --c-brand:            #024731;
   --c-brand-strong:     #01301f;
   --c-brand-soft:       #eef5f1;
   --c-on-brand:         #ffffff;
-  --c-accent:           #009A44;  /* Kelly Green, PANTONE 347C */
+  --c-accent:           #009A44;
+
+  /* --- Gradient background ---------------------------------------------- */
+  --c-grad-1:           #e8f5ee;
+  --c-grad-2:           #d4eee0;
+  --c-grad-3:           #f0f4f8;
+  --c-grad-4:           #e3f0e9;
+
+  /* --- Glass ------------------------------------------------------------ */
+  --glass-bg:           rgba(255, 255, 255, 0.55);
+  --glass-bg-strong:    rgba(255, 255, 255, 0.72);
+  --glass-bg-sidebar:   rgba(2, 71, 49, 0.82);
+  --glass-border:       rgba(255, 255, 255, 0.45);
+  --glass-border-dim:   rgba(255, 255, 255, 0.25);
+  --glass-blur:         16px;
+  --glass-blur-heavy:   24px;
 
   /* --- Surfaces --------------------------------------------------------- */
-  --c-bg:               #ffffff;
-  --c-surface:          #f5f7f6;
-  --c-surface-2:        #eaefec;
-  --c-border:           #d0dbd5;
-  --c-border-strong:    #a5b5ac;
+  --c-bg:               transparent;
+  --c-surface:          rgba(255, 255, 255, 0.45);
+  --c-surface-2:        rgba(255, 255, 255, 0.35);
+  --c-border:           rgba(2, 71, 49, 0.12);
+  --c-border-strong:    rgba(2, 71, 49, 0.22);
 
   /* --- Text ------------------------------------------------------------- */
-  --c-text:             #1B2A23;  /* Ink, per brand guidelines */
-  --c-text-muted:       #475a50;
-  --c-text-faint:       #637369;
+  --c-text:             #1B2A23;
+  --c-text-muted:       #3d5248;
+  --c-text-faint:       #5a7068;
   --c-link:             #024731;
   --c-link-hover:       #009A44;
 
   /* --- Callout tones ---------------------------------------------------- */
-  --c-critical-bg:      #fdf2f1;
-  --c-critical-rule:    #AA0000;
+  --c-critical-bg:      rgba(253, 232, 230, 0.7);
+  --c-critical-rule:    #c62828;
   --c-critical-text:    #7d1813;
 
-  --c-warn-bg:          #fff8e8;
-  --c-warn-rule:        #AE5E00;
+  --c-warn-bg:          rgba(255, 243, 224, 0.7);
+  --c-warn-rule:        #e65100;
   --c-warn-text:        #6b4600;
 
-  --c-note-bg:          #eff4fa;
-  --c-note-rule:        #242551;
-  --c-note-text:        #1c1e4a;
+  --c-note-bg:          rgba(227, 242, 253, 0.7);
+  --c-note-rule:        #1565c0;
+  --c-note-text:        #1a237e;
 
-  --c-jabsom-bg:        var(--c-brand-soft);
+  --c-jabsom-bg:        rgba(232, 245, 238, 0.7);
   --c-jabsom-rule:      var(--c-brand);
   --c-jabsom-text:      var(--c-brand-strong);
 
-  --c-todo-bg:          #f4f0fa;
-  --c-todo-rule:        #542977;
+  --c-todo-bg:          rgba(237, 231, 246, 0.7);
+  --c-todo-rule:        #6a1b9a;
   --c-todo-text:        #3e1d5c;
 
   /* --- Type ------------------------------------------------------------- */
-  --font-sans:  "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-sans:  "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
   --font-mono:  ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
 
-  --fs-step--1: clamp(0.83rem, 0.81rem + 0.1vw, 0.88rem);
-  --fs-step-0:  clamp(1rem, 0.97rem + 0.15vw, 1.06rem);
-  --fs-step-1:  clamp(1.19rem, 1.13rem + 0.3vw, 1.33rem);
-  --fs-step-2:  clamp(1.42rem, 1.31rem + 0.55vw, 1.78rem);
-  --fs-step-3:  clamp(1.69rem, 1.5rem + 0.95vw, 2.37rem);
-  --fs-step-4:  clamp(2.01rem, 1.7rem + 1.55vw, 3.16rem);
+  --fs-sm:   0.85rem;
+  --fs-base: 1rem;
+  --fs-md:   1.15rem;
+  --fs-lg:   1.35rem;
+  --fs-xl:   1.65rem;
+  --fs-2xl:  2rem;
 
   --lh-tight: 1.2;
   --lh-snug:  1.35;
-  --lh-body:  1.65;
+  --lh-body:  1.6;
 
   --measure: 68ch;
 
-  /* --- Space (4px base grid) -------------------------------------------- */
+  /* --- Space ------------------------------------------------------------ */
   --sp-1: 0.25rem;
   --sp-2: 0.5rem;
   --sp-3: 0.75rem;
@@ -79,102 +88,20 @@
   --sp-7: 3rem;
   --sp-8: 4rem;
 
-  /* --- Shape and depth -------------------------------------------------- */
-  --radius-sm: 4px;
-  --radius:    8px;
-  --radius-lg: 12px;
+  /* --- Shape ------------------------------------------------------------ */
+  --radius-sm: 6px;
+  --radius:    12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
 
-  --shadow-1: 0 1px 2px rgba(2, 42, 30, 0.07), 0 1px 3px rgba(2, 42, 30, 0.06);
-  --shadow-2: 0 4px 12px rgba(2, 42, 30, 0.09);
+  --shadow-glass: 0 8px 32px rgba(2, 71, 49, 0.08);
+  --shadow-glass-sm: 0 2px 12px rgba(2, 71, 49, 0.06);
+  --shadow-glass-lg: 0 12px 48px rgba(2, 71, 49, 0.12);
+  --shadow-1: 0 1px 3px rgba(2, 71, 49, 0.06);
+  --shadow-2: 0 4px 16px rgba(2, 71, 49, 0.1);
 
   /* --- Interaction ------------------------------------------------------ */
   --focus-ring: 3px solid #009A44;
   --focus-offset: 2px;
   --target-min: 24px;
-  --sidebar-w: 19rem;
-}
-
-/* Dark theme */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --c-brand:          #6fc39f;
-    --c-brand-strong:   #9ddcc0;
-    --c-brand-soft:     #11241c;
-    --c-on-brand:       #05231a;
-    --c-accent:         #4dcc82;
-
-    --c-bg:             #0e1512;
-    --c-surface:        #171f1b;
-    --c-surface-2:      #1f2924;
-    --c-border:         #2c3a34;
-    --c-border-strong:  #475a51;
-
-    --c-text:           #e7eeea;
-    --c-text-muted:     #abbab2;
-    --c-text-faint:     #8c9c94;
-    --c-link:           #84d3ae;
-    --c-link-hover:     #b3e6cd;
-
-    --c-critical-bg:    #2a1513;
-    --c-critical-rule:  #f19b95;
-    --c-critical-text:  #f8c6c2;
-
-    --c-warn-bg:        #2a2108;
-    --c-warn-rule:      #e8bf5e;
-    --c-warn-text:      #f2d79a;
-
-    --c-note-bg:        #10202e;
-    --c-note-rule:      #7cb8e6;
-    --c-note-text:      #b3d6f2;
-
-    --c-todo-bg:        #1c1730;
-    --c-todo-rule:      #a894e0;
-    --c-todo-text:      #cbbdf0;
-
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
-    --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.55);
-
-    --focus-ring: 3px solid #4dcc82;
-  }
-}
-
-:root[data-theme="dark"] {
-  --c-brand:          #6fc39f;
-  --c-brand-strong:   #9ddcc0;
-  --c-brand-soft:     #11241c;
-  --c-on-brand:       #05231a;
-  --c-accent:         #4dcc82;
-
-  --c-bg:             #0e1512;
-  --c-surface:        #171f1b;
-  --c-surface-2:      #1f2924;
-  --c-border:         #2c3a34;
-  --c-border-strong:  #475a51;
-
-  --c-text:           #e7eeea;
-  --c-text-muted:     #abbab2;
-  --c-text-faint:     #8c9c94;
-  --c-link:           #84d3ae;
-  --c-link-hover:     #b3e6cd;
-
-  --c-critical-bg:    #2a1513;
-  --c-critical-rule:  #f19b95;
-  --c-critical-text:  #f8c6c2;
-
-  --c-warn-bg:        #2a2108;
-  --c-warn-rule:      #e8bf5e;
-  --c-warn-text:      #f2d79a;
-
-  --c-note-bg:        #10202e;
-  --c-note-rule:      #7cb8e6;
-  --c-note-text:      #b3d6f2;
-
-  --c-todo-bg:        #1c1730;
-  --c-todo-rule:      #a894e0;
-  --c-todo-text:      #cbbdf0;
-
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.55);
-
-  --focus-ring: 3px solid #4dcc82;
 }
