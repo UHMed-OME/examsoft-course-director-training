@@ -145,16 +145,8 @@ li:last-child { margin-bottom: 0; }
 .sidebar__brand:hover { opacity: 0.85; color: var(--c-on-brand); }
 
 .sidebar__logo {
-  display: block; width: auto; height: 3.2rem;
+  display: block; width: auto; height: 4rem;
   opacity: 0.95;
-}
-.sidebar__brand-text {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.3;
 }
 
 .sidebar__links { list-style: none; margin: 0; padding: 0; }
