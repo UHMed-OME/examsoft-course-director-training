@@ -188,7 +188,7 @@ const sidebar = (active, videoItems, sections) => {
 
   return `
 <nav class="sidebar" id="sidebar" aria-label="Site">
-  <a class="sidebar__brand" href="${asset("")}"><img class="sidebar__logo" src="${asset("assets/jabsom-logo-white.png")}" alt="JABSOM" width="190" height="240"><span class="sidebar__brand-text">ExamSoft</span></a>
+  <a class="sidebar__brand" href="${asset("")}"><img class="sidebar__logo" src="${asset("assets/jabsom-logo-white.png")}" alt="JABSOM"><span class="sidebar__brand-text">Office of Medical Education</span></a>
   <ul class="sidebar__links">
     ${link("home", "Quick start", "")}
     <li class="sidebar__heading">Videos</li>
