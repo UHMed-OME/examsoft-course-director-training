@@ -1,19 +1,27 @@
 /* ==========================================================================
-   build.mjs — renders index.html from the JSON in content/.
+   build.mjs — renders the site from the JSON in content/.
    Zero dependencies. Node 18 or newer.
 
      node build/build.mjs
 
-   Content is never edited in markup. To change the training, edit the JSON
-   in content/ and re-run this. See README.md.
+   Emits two pages:
+     index.html        the onboarding path, from content/home.json
+     docs/index.html   the full reference, from content/sections/*.json
+
+   Content is never edited in markup. To change the training, edit the JSON in
+   content/ and re-run this. See README.md.
    ========================================================================== */
 
-import { readFile, readdir, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT = join(ROOT, "content");
+
+/* Relative-path prefix for the page currently being rendered. "" at the repo
+   root, "../" for anything one directory down. Set by renderPage. */
+let BASE = "";
 
 /* --- Escaping and inline markup ----------------------------------------- */
 
@@ -25,16 +33,25 @@ const escapeHtml = (value) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
-/* Only http(s), mailto, and in-page anchors are allowed through. Anything
-   else becomes inert text, so a bad content edit cannot inject a script URL. */
+/* Reject anything carrying a scheme other than http, https, or mailto. That
+   blocks javascript: and data: while leaving every relative path usable. */
 const safeHref = (url) => {
   const raw = String(url).trim();
-  return /^(https?:\/\/|mailto:|#|\.{0,2}\/|images\/)/i.test(raw) ? escapeHtml(raw) : "";
+  const scheme = raw.match(/^([a-z][a-z0-9+.-]*):/i);
+  if (scheme && !/^(https?|mailto)$/i.test(scheme[1])) return "";
+  return escapeHtml(raw);
 };
 
-/* Supports **bold**, `code`, and [text](url). Deliberately small — the
-   content files are prose, not a markup playground. Escaping happens first,
-   so authored angle brackets are always literal. */
+/* Prefix a repo-relative asset path for the page being rendered. */
+const asset = (path) => {
+  const raw = String(path).trim();
+  if (/^([a-z][a-z0-9+.-]*:|\/|#)/i.test(raw)) return safeHref(raw);
+  return escapeHtml(BASE + raw);
+};
+
+/* Supports **bold**, `code`, and [text](url). Deliberately small: the content
+   files are prose, not a markup playground. Escaping runs first, so authored
+   angle brackets stay literal. */
 const inline = (text) => {
   if (text == null) return "";
   let out = escapeHtml(text);
@@ -42,7 +59,7 @@ const inline = (text) => {
   out = out.replace(/`([^`]+)`/g, (_, code) => `<code>${code}</code>`);
 
   out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, label, url) => {
-    const href = safeHref(url);
+    const href = /^([a-z][a-z0-9+.-]*:|\/|#)/i.test(url) ? safeHref(url) : asset(url);
     if (!href) return label;
     const external = /^https?:/i.test(url);
     const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
@@ -50,6 +67,7 @@ const inline = (text) => {
   });
 
   out = out.replace(/\*\*([^*]+)\*\*/g, (_, bold) => `<strong>${bold}</strong>`);
+  out = out.replace(/\*([^*]+)\*/g, (_, em) => `<em>${em}</em>`);
 
   return out;
 };
@@ -112,11 +130,11 @@ const renderers = {
       </aside>`;
   },
 
-  /* Rendered as a callout so a maintainer note is impossible to miss, and
-     so it survives into the printed PDF. */
+  /* Rendered as a callout so a maintainer note is impossible to miss, and so
+     it survives into the printed PDF. */
   todo: (b) => `
     <aside class="callout callout--todo">
-      <span class="callout__label">To do &mdash; maintainer</span>
+      <span class="callout__label">To do, maintainer</span>
       <p>${inline(b.text)}</p>
     </aside>`,
 
@@ -146,9 +164,7 @@ const renderers = {
 
   figure: (b) => `
     <figure>
-      <img src="${safeHref(b.src)}" alt="${escapeHtml(b.alt)}"${
-        b.width ? ` width="${escapeHtml(b.width)}"` : ""
-      }${b.height ? ` height="${escapeHtml(b.height)}"` : ""} loading="lazy" decoding="async">
+      <img src="${asset(b.src)}" alt="${escapeHtml(b.alt)}" loading="lazy" decoding="async">
       <figcaption>
         ${inline(b.caption)}
         ${b.note ? `<span class="figure__source">${inline(b.note)}</span>` : ""}
@@ -167,7 +183,7 @@ const renderers = {
         ${b.items
           .map(
             (item) => `<figure class="figurepair__item">
-              <img src="${safeHref(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">
+              <img src="${asset(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">
               <figcaption class="figurepair__label">${inline(item.label)}</figcaption>
             </figure>`
           )
@@ -179,15 +195,16 @@ const renderers = {
       </figcaption>
     </figure>`,
 
-  /* An embed is only emitted when the content explicitly sets embed:true.
-     The default is a link card, so an inaccessible or removed video never
-     renders as a dead player. */
+  /* An embed is only emitted when the content sets embed:true. The default is
+     a link card, so an inaccessible or removed video never renders as a dead
+     player. */
   video: (b) => {
-    const status = b.status && b.status !== "ok"
-      ? `<span class="video__status video__status--${escapeHtml(b.status)}">${escapeHtml(
-          b.status === "restricted" ? "Access restricted" : "Removed"
-        )}</span>`
-      : "";
+    const status =
+      b.status && b.status !== "ok"
+        ? `<span class="video__status video__status--${escapeHtml(b.status)}">${escapeHtml(
+            b.status === "restricted" ? "Access restricted" : "Removed"
+          )}</span>`
+        : "";
 
     let frame = "";
     if (b.embed) {
@@ -244,15 +261,13 @@ const renderers = {
   kv: (b) => `
     ${b.title ? `<h3>${inline(b.title)}</h3>` : ""}
     <dl class="kv">
-      ${b.items
-        .map((i) => `<dt>${inline(i.k)}</dt><dd>${inline(i.v)}</dd>`)
-        .join("")}
+      ${b.items.map((i) => `<dt>${inline(i.k)}</dt><dd>${inline(i.v)}</dd>`).join("")}
     </dl>`,
 
   /* Pulls from site.json so contact details live in exactly one place. */
-  contacts: (_b, site) => `
+  contacts: (_b, ctx) => `
     <div class="contacts">
-      ${site.contacts
+      ${ctx.site.contacts
         .map(
           (c) => `<div class="contact">
             <p class="contact__role">${inline(c.role)}</p>
@@ -264,51 +279,129 @@ const renderers = {
         )
         .join("")}
     </div>`,
+
+  /* Generated from the section files, so adding a section adds a card here
+     without anyone remembering to update the home page. */
+  doccards: (b, ctx) => `
+    ${b.title ? `<h3>${inline(b.title)}</h3>` : ""}
+    <ul class="doccards">
+      ${ctx.sections
+        .map(
+          (s, i) => `<li class="doccard">
+            <a class="doccard__link" href="${asset("docs/")}#${escapeHtml(s.id)}">
+              <span class="doccard__num">${String(i + 1).padStart(2, "0")}</span>
+              <span class="doccard__title">${escapeHtml(s.navLabel || s.title)}</span>
+            </a>
+            ${s.lede ? `<p class="doccard__lede">${escapeHtml(s.lede)}</p>` : ""}
+          </li>`
+        )
+        .join("")}
+    </ul>`,
 };
 
-const renderBlock = (block, site) => {
+const renderBlock = (block, ctx) => {
   const fn = renderers[block.type];
   if (!fn) {
     throw new Error(
       `Unknown block type "${block.type}". Add a renderer in build/build.mjs or fix the content file.`
     );
   }
-  return fn(block, site);
+  return fn(block, ctx);
 };
 
-/* --- Page --------------------------------------------------------------- */
+/* --- Page shell --------------------------------------------------------- */
 
-const renderSection = (section, index, site) => `
+const shell = ({ title, description, body, extraClass = "" }) => `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(description)}">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="${asset("assets/css/tokens.css")}">
+<link rel="stylesheet" href="${asset("assets/css/styles.css")}">
+<link rel="stylesheet" href="${asset("assets/css/print.css")}">
+</head>
+<body class="${extraClass}">
+<a class="skip-link" href="#main">Skip to content</a>
+${body}
+<button class="btn-icon theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden>
+  <span data-theme-label>Dark</span> mode
+</button>
+<script src="${asset("assets/js/site.js")}" defer></script>
+</body>
+</html>
+`;
+
+const footer = (site) => `
+  <footer class="footer">
+    <p>${escapeHtml(site.portal.editionNote)}</p>
+    <p>${escapeHtml(site.vendorTicketPolicy)}</p>
+    <p>${escapeHtml(site.footerNote)} Last reviewed ${escapeHtml(site.reviewed)}, version ${escapeHtml(
+  site.version
+)}.</p>
+  </footer>`;
+
+/* --- Home (onboarding) -------------------------------------------------- */
+
+const renderHome = (site, home, sections) => {
+  BASE = "";
+  const ctx = { site, sections };
+
+  const body = `
+<div class="layout layout--single">
+  <main class="content" id="main">
+    <div class="cover">
+      <p class="cover__eyebrow">${escapeHtml(site.institution)} &middot; ${escapeHtml(
+    site.office
+  )}</p>
+      <h1>${escapeHtml(site.title)}</h1>
+      <p class="cover__sub">${escapeHtml(home.lede)}</p>
+      <dl class="cover__meta">
+        <div><dt>Portal</dt><dd><a href="${safeHref(site.portal.url)}" target="_blank" rel="noopener noreferrer">Sign in</a></dd></div>
+        <div><dt>Institution ID</dt><dd><code>${escapeHtml(site.portal.institutionId)}</code></dd></div>
+        <div><dt>Edition</dt><dd>${escapeHtml(site.portal.edition)}</dd></div>
+        <div><dt>Academic year</dt><dd>${escapeHtml(site.academicYear)}</dd></div>
+        <div><dt>Last reviewed</dt><dd>${escapeHtml(site.reviewed)}</dd></div>
+      </dl>
+    </div>
+    ${home.blocks.map((b) => renderBlock(b, ctx)).join("\n")}
+    ${footer(site)}
+  </main>
+</div>`;
+
+  return shell({
+    title: `${site.title} — ${site.institutionShort}`,
+    description: site.subtitle,
+    body,
+    extraClass: "page-home",
+  });
+};
+
+/* --- Docs (reference) --------------------------------------------------- */
+
+const renderSection = (section, index, ctx) => `
   <section class="section" id="${escapeHtml(section.id)}" aria-labelledby="${escapeHtml(
   section.id
 )}-h">
     <header class="section__head">
       <span class="section__num">Section ${String(index + 1).padStart(2, "0")}</span>
-      <h2 id="${escapeHtml(section.id)}-h">${inline(section.title)}<a class="section-permalink" href="#${escapeHtml(
-  section.id
-)}" aria-label="Link to this section">#</a></h2>
+      <h2 id="${escapeHtml(section.id)}-h">${inline(
+  section.title
+)}<a class="section-permalink" href="#${escapeHtml(section.id)}" aria-label="Link to this section">#</a></h2>
       ${section.lede ? `<p class="section__lede">${inline(section.lede)}</p>` : ""}
     </header>
-    ${section.blocks.map((b) => renderBlock(b, site)).join("\n")}
+    ${section.blocks.map((b) => renderBlock(b, ctx)).join("\n")}
   </section>`;
 
-const renderPage = (site, sections) => `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(site.title)} — ${escapeHtml(site.institutionShort)}</title>
-<meta name="description" content="${escapeHtml(site.subtitle)}">
-<meta name="robots" content="noindex">
-<link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/styles.css">
-<link rel="stylesheet" href="assets/css/print.css">
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
+const renderDocs = (site, sections) => {
+  BASE = "../";
+  const ctx = { site, sections };
 
+  const body = `
 <header class="topbar">
-  <span class="topbar__title">${escapeHtml(site.title)}</span>
+  <span class="topbar__title">${escapeHtml(site.docsTitle)}</span>
   <button class="btn-icon" type="button" data-nav-toggle aria-expanded="true" aria-controls="sidebar">
     Contents
   </button>
@@ -316,15 +409,12 @@ const renderPage = (site, sections) => `<!doctype html>
 
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Sections">
-    <a class="sidebar__brand" href="#main">${escapeHtml(site.title)}</a>
+    <a class="sidebar__brand" href="${asset("")}">&larr; ${escapeHtml(site.title)}</a>
     <p class="sidebar__sub">${escapeHtml(site.institutionShort)} ${escapeHtml(site.office)}</p>
     <p class="toc-heading">Contents</p>
     <ol class="toc">
       ${sections
-        .map(
-          (s) =>
-            `<li><a href="#${escapeHtml(s.id)}">${escapeHtml(s.navLabel || s.title)}</a></li>`
-        )
+        .map((s) => `<li><a href="#${escapeHtml(s.id)}">${escapeHtml(s.navLabel || s.title)}</a></li>`)
         .join("")}
     </ol>
   </nav>
@@ -332,19 +422,10 @@ const renderPage = (site, sections) => `<!doctype html>
   <main class="content" id="main">
     <div class="cover">
       <p class="cover__eyebrow">${escapeHtml(site.institution)} &middot; ${escapeHtml(
-  site.office
-)}</p>
-      <h1>${escapeHtml(site.title)}</h1>
-      <p class="cover__sub">${escapeHtml(site.subtitle)}</p>
-      <dl class="cover__meta">
-        <div><dt>Portal</dt><dd>${escapeHtml(site.portal.edition)}</dd></div>
-        <div><dt>Institution ID</dt><dd><code>${escapeHtml(
-          site.portal.institutionId
-        )}</code></dd></div>
-        <div><dt>Academic year</dt><dd>${escapeHtml(site.academicYear)}</dd></div>
-        <div><dt>Last reviewed</dt><dd>${escapeHtml(site.reviewed)}</dd></div>
-        <div><dt>Version</dt><dd>${escapeHtml(site.version)}</dd></div>
-      </dl>
+    site.office
+  )}</p>
+      <h1>${escapeHtml(site.docsTitle)}</h1>
+      <p class="cover__sub">${escapeHtml(site.docsSubtitle)}</p>
       <p class="cover__audience">${escapeHtml(site.audienceNote)}</p>
     </div>
 
@@ -355,26 +436,17 @@ const renderPage = (site, sections) => `<!doctype html>
       </ol>
     </nav>
 
-    ${sections.map((s, i) => renderSection(s, i, site)).join("\n")}
-
-    <footer class="footer">
-      <p>${escapeHtml(site.portal.editionNote)}</p>
-      <p>${escapeHtml(site.vendorTicketPolicy)}</p>
-      <p>${escapeHtml(site.footerNote)} Last reviewed ${escapeHtml(
-  site.reviewed
-)}, version ${escapeHtml(site.version)}.</p>
-    </footer>
+    ${sections.map((s, i) => renderSection(s, i, ctx)).join("\n")}
+    ${footer(site)}
   </main>
-</div>
+</div>`;
 
-<button class="btn-icon theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden>
-  <span data-theme-label>Dark</span> mode
-</button>
-
-<script src="assets/js/site.js" defer></script>
-</body>
-</html>
-`;
+  return shell({
+    title: `${site.docsTitle} — ${site.institutionShort}`,
+    description: site.docsSubtitle,
+    body,
+  });
+};
 
 /* --- Run ---------------------------------------------------------------- */
 
@@ -388,10 +460,10 @@ const readJson = async (path) => {
 
 const main = async () => {
   const site = await readJson(join(CONTENT, "site.json"));
+  const home = await readJson(join(CONTENT, "home.json"));
 
   const dir = join(CONTENT, "sections");
   const files = (await readdir(dir)).filter((f) => f.endsWith(".json")).sort();
-
   if (!files.length) throw new Error("No section files found in content/sections/.");
 
   const sections = [];
@@ -407,11 +479,15 @@ const main = async () => {
   const duplicate = ids.find((id, i) => ids.indexOf(id) !== i);
   if (duplicate) throw new Error(`Duplicate section id "${duplicate}".`);
 
-  const html = renderPage(site, sections);
-  await writeFile(join(ROOT, "index.html"), html, "utf8");
+  const homeHtml = renderHome(site, home, sections);
+  await writeFile(join(ROOT, "index.html"), homeHtml, "utf8");
 
-  console.log(`Built index.html — ${sections.length} sections, ${html.length} bytes`);
-  console.log(`Sections: ${files.join(", ")}`);
+  const docsHtml = renderDocs(site, sections);
+  await mkdir(join(ROOT, "docs"), { recursive: true });
+  await writeFile(join(ROOT, "docs", "index.html"), docsHtml, "utf8");
+
+  console.log(`Built index.html      — onboarding, ${homeHtml.length} bytes`);
+  console.log(`Built docs/index.html — ${sections.length} sections, ${docsHtml.length} bytes`);
 };
 
 main().catch((error) => {

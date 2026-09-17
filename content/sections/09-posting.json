@@ -2,54 +2,54 @@
   "id": "posting",
   "navLabel": "Posting an assessment",
   "title": "Posting an assessment",
-  "lede": "Normally OME does this. It is documented here so you know what is being set on your behalf, and what cannot be changed afterwards.",
+  "lede": "OME normally does this. It is here so you know what gets set for you, and what you cannot change afterwards.",
   "blocks": [
     {
       "type": "callout",
       "tone": "note",
-      "title": "Who posts",
-      "text": "OME pre-clerkship staff post assessments as part of the preparation window. Do not post your own exam unless OME has specifically asked you to. If you do, every field below matters."
+      "title": "OME posts your exam",
+      "text": "Posting happens during the preparation window. Do not post your own exam unless OME has asked you to. If you do, every field below matters."
     },
     {
       "type": "p",
-      "text": "Posting is what opens the download window. Open the assessment, scroll to the end, and select **Post Assessment**. A dialog opens with the fields below."
+      "text": "Posting is what opens the download window. Open the assessment, scroll to the end, and select **Post Assessment**. A dialog opens with these fields."
     },
     {
       "type": "table",
       "caption": "Posting fields and the JABSOM convention for each",
       "cols": ["Field", "What to set", "Why"],
       "rows": [
-        ["Posting Name", "The exam name as students should see it", "This is the label that appears on the student iPad for download and during the exam."],
-        ["Assessment Password", "Minimum 6 letters plus at least 1 number", "Required. The proctor announces it at exam time. It is never emailed to students."],
-        ["Course", "The correct course for the cohort", "Drives enrolment and reporting. The wrong course posts the exam to the wrong students."],
-        ["Download Start", "Usually 48 hours before the exam", "Gives students time to download onto the iPad. JABSOM posts 36 to 48 hours ahead."],
-        ["Download End", "30 minutes to 1 hour after the exam", "Covers late arrivals and device swaps without leaving the window open."],
-        ["Max Downloads", "Always 1", "A JABSOM standing rule. It prevents a student re-downloading onto a second device."],
+        ["Posting Name", "The exam name as students should see it", "This is the label on the student iPad, for download and during the exam."],
+        ["Assessment Password", "At least 6 letters plus at least 1 number", "Required. The proctor announces it at exam time."],
+        ["Course", "The correct course for the cohort", "Drives enrollment and reporting. The wrong course sends the exam to the wrong students."],
+        ["Download Start", "Usually 48 hours before the exam", "Students need time to download. JABSOM posts 36 to 48 hours ahead."],
+        ["Download End", "30 minutes to 1 hour after the exam", "Covers late arrivals and device swaps."],
+        ["Max Downloads", "Always 1", "A standing JABSOM rule. Stops a student re-downloading onto a second device."],
         ["Instructor", "The course director of record", "Appears on the posting and in reporting."],
-        ["Email Download Reminder", "Optional", "Automated nudge to download before the window closes."],
-        ["Email Upload Reminder", "Optional", "Automated nudge to upload the answer file after the exam."],
-        ["Upload Deadline", "Optional, but good practice to set it", "Late uploads are flagged, which makes exceptions easy to spot."],
-        ["Secure Review", "Leave as None", "Unless your course has specifically planned an in-room review."],
-        ["Additional security options", "Leave blank", "JABSOM does not use them for standard pre-clerkship exams."]
+        ["Email Download Reminder", "Optional", "Nudges students before the window closes."],
+        ["Email Upload Reminder", "Optional", "Nudges students to upload after the exam."],
+        ["Upload Deadline", "Optional, but set it", "Late uploads get flagged, which makes exceptions easy to spot."],
+        ["Secure Review", "None", "Unless your course has planned an in-room review."],
+        ["Additional security options", "Blank", "JABSOM does not use them for standard pre-clerkship exams."]
       ]
     },
     {
       "type": "callout",
       "tone": "critical",
       "title": "Max Downloads is always 1",
-      "text": "Of every field on this dialog, this is the one that is a hard JABSOM convention rather than a judgement call. It has been 1 in every onboarding document since 2020."
+      "text": "Of everything on this dialog, this is the one hard JABSOM convention rather than a judgment call. It has been 1 in every onboarding document since 2020."
     },
     {
       "type": "callout",
       "tone": "critical",
-      "title": "After posting plus one download, the content is frozen",
-      "text": "Once the assessment is posted **and at least one student has downloaded it**, questions and answer keys can no longer be altered. If you find an error after that point it becomes a post-exam scoring adjustment, not an edit. Catch content problems during the OME proofing window."
+      "title": "One download freezes the content",
+      "text": "Once the assessment is posted and at least one student has downloaded it, questions and answer keys lock. An error found after that becomes a post-exam scoring adjustment instead of an edit. Catch content problems during OME proofing."
     },
     {
       "type": "callout",
       "tone": "warn",
-      "title": "Never send the password to students",
-      "text": "When an assessment is posted, a general notification email usually goes out so students know it is available to download. The exam password is not in it and must not be. The proctor announces the password in the room at exam time."
+      "title": "The password never goes in an email",
+      "text": "Posting usually triggers a general notification so students know the exam is available to download. The password stays out of it. The proctor announces it in the room."
     },
     {
       "type": "links",

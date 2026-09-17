@@ -659,6 +659,63 @@ figcaption { font-size: var(--fs-step--1); color: var(--c-text-muted); margin-to
 .footer p { max-width: var(--measure); }
 .footer p:last-child { margin-bottom: 0; }
 
+/* --- Home page ---------------------------------------------------------- */
+/* The onboarding page is short and linear, so it drops the sidebar and reads
+   as a single column. The reference keeps the sidebar. */
+.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 54rem;
+}
+
+.page-home .cover__meta a { font-weight: 650; }
+
+/* --- Doc cards ---------------------------------------------------------- */
+.doccards {
+  list-style: none;
+  padding: 0;
+  margin-block: var(--sp-4) var(--sp-6);
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--sp-3);
+}
+
+.doccard {
+  margin: 0;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  padding: var(--sp-4);
+}
+
+.doccard__link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  min-height: var(--target-min);
+  text-decoration: none;
+  color: var(--c-text);
+  font-weight: 660;
+}
+
+.doccard__link:hover .doccard__title { text-decoration: underline; }
+
+.doccard__num {
+  font-size: var(--fs-step--1);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--c-brand);
+  flex: none;
+}
+
+.doccard__lede {
+  font-size: var(--fs-step--1);
+  color: var(--c-text-muted);
+  margin: var(--sp-2) 0 0;
+  line-height: var(--lh-snug);
+  max-width: none;
+}
+
 /* --- Print-only TOC ----------------------------------------------------- */
 .print-toc { display: none; }
 

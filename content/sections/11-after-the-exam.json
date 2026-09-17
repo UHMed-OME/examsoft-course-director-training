@@ -7,36 +7,36 @@
     {
       "type": "callout",
       "tone": "note",
-      "title": "Performance is visible within minutes",
-      "text": "Once students upload their answer files, the **assessment overview** in the portal gives you a first read on how the class did. You do not wait for a batch process or for OME to send you anything."
+      "title": "You can see performance within minutes",
+      "text": "As soon as students upload their answer files, the assessment overview shows you how the class did. There is no batch process to wait for and nothing OME has to send you."
     },
-    { "type": "h3", "text": "What to look at first" },
+    { "type": "h3", "text": "What to look at, in order" },
     {
       "type": "steps",
       "items": [
         {
           "t": "Assessment overview",
-          "d": "Distribution and overall performance. This is your sanity check that the exam behaved as intended."
+          "d": "Distribution and overall performance. Your check that the exam behaved the way you intended."
         },
         {
           "t": "Item analysis",
-          "d": "Find questions where the whole class failed or where the distractors did not discriminate. These are your candidates for scoring adjustment and for retirement before next year."
+          "d": "Find questions the whole class missed, and questions where the distractors did not separate strong students from weak ones. These are your candidates for a scoring adjustment now and for retirement next year."
         },
         {
           "t": "Category performance",
-          "d": "This is what the category tags were for. A report can show category performance as a summary or broken out by exam taker, which is how you see whether a topic landed across the cohort."
+          "d": "This is what the tags were for. A report can show category performance as a summary or by exam taker, which tells you whether a topic landed across the cohort."
         }
       ]
     },
     {
       "type": "callout",
       "tone": "warn",
-      "title": "Scoring adjustments are a deliberate act",
-      "text": "If an item was defective, scoring can be adjusted after the fact — accepting a second correct answer, or dropping the item. Do this in consultation with OME, not unilaterally, because it changes the record for every student in the cohort."
+      "title": "Talk to OME before adjusting scores",
+      "text": "If an item was defective you can accept a second correct answer or drop the item. Do it in consultation with OME rather than on your own, because it changes the record for every student in the cohort."
     },
     {
       "type": "p",
-      "text": "Note the annual loop: the item analysis you run this year is what tells you which questions to remove when you duplicate this exam next year. See [Building an assessment](#building)."
+      "text": "There is a loop here worth noticing. The item analysis you run this year is what tells you which questions to cut when you duplicate the exam next year. See [Building an assessment](#building)."
     },
     {
       "type": "links",
@@ -44,7 +44,7 @@
       "items": [
         { "label": "Legacy Portal: Review Assessment Results and Adjust Scoring", "url": "https://support.examsoft.com/hc/en-us/articles/11166583729677-Legacy-Portal-Review-Assessment-Results-and-Adjust-Scoring", "note": "Reviewing activity, grading, and making adjustments." },
         { "label": "Legacy Portal: Reporting Overview", "url": "https://support.examsoft.com/hc/en-us/articles/11166769249165-Legacy-Portal-Reporting-Overview", "note": "What reports exist and what each one answers." },
-        { "label": "Get Started with Reporting (Enterprise and Legacy)", "url": "https://support.examsoft.com/hc/en-us/articles/11146747435405-Get-Started-with-Reporting-Enterprise-Legacy", "note": "Conceptual introduction to the reporting model." }
+        { "label": "Get Started with Reporting (Enterprise and Legacy)", "url": "https://support.examsoft.com/hc/en-us/articles/11146747435405-Get-Started-with-Reporting-Enterprise-Legacy", "note": "An introduction to the reporting model." }
       ]
     }
   ]

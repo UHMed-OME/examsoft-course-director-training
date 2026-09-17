@@ -6,36 +6,36 @@
   "blocks": [
     {
       "type": "table",
-      "caption": "Question types and the OME position on each",
+      "caption": "Question types and where OME stands on each",
       "cols": ["Type", "OME stance", "Notes"],
       "rows": [
-        ["Multiple Choice", "Preferred", "The workhorse. Supports one or many correct answers, with partial credit options."],
-        ["Multiple Select", "Preferred", "In the Legacy portal this is Multiple Choice with more than one correct answer marked, not a separate item type."],
-        ["True / False", "Fine", "Two options. Low discrimination, so use sparingly."],
-        ["Fill in the Blank", "Not preferable", "Spelling is scored. Up to 15 blanks per question; alternative spellings separated by a vertical pipe."],
+        ["Multiple Choice", "Preferred", "Does most of the work. Handles one or several correct answers, with partial credit options."],
+        ["Multiple Select", "Preferred", "In the Legacy portal this is Multiple Choice with more than one answer marked correct, not a separate type."],
+        ["True / False", "Fine", "Two options. Discriminates poorly, so use it sparingly."],
+        ["Fill in the Blank", "Not preferable", "Spelling is scored. Up to 15 blanks per question, with alternatives separated by a vertical pipe."],
         ["Matching", "Not preferable", "Pairs prompts with responses."],
-        ["Hot Spot", "Strong for image-based items", "Rectangle and polygon variants. Student drops a pin on the image."],
-        ["Drag and Drop", "Strong, with care", "Supports partial credit with negative scoring. Not an ordering question."]
+        ["Hot Spot", "Good for image questions", "Rectangle and polygon variants. The student drops a pin on the image."],
+        ["Drag and Drop", "Good, with care", "Allows partial credit with negative scoring. Does not score sequence."]
       ]
     },
     {
       "type": "callout",
       "tone": "jabsom",
-      "title": "Not preferable is an OME judgement, not a limitation",
-      "text": "Fill in the Blank and Matching both work in the portal. OME discourages them because they generate more scoring disputes and more post-exam adjustment work than they are worth. If your course has a real reason to use one, raise it before the draft deadline rather than at proofing."
+      "title": "Not preferable is an OME judgment, not a limitation",
+      "text": "Fill in the Blank and Matching both work. OME discourages them because they produce more scoring disputes and more post-exam adjustment than they are worth. If your course has a good reason to use one, raise it before the draft deadline rather than at proofing."
     },
     { "type": "h3", "text": "Hot Spot" },
     {
       "type": "p",
-      "text": "The student answers by tapping a region of an image, which drops a pin. This is the strongest item type JABSOM has for anatomy, neuroanatomy, and clinical skills — anything where the answer is a **location** rather than a word."
+      "text": "The student taps a region of an image and a pin drops there. This is the best item type JABSOM has for anatomy, neuroanatomy, and clinical skills, or anywhere the answer is a location rather than a word."
     },
     {
       "type": "ul",
       "items": [
-        "Two variants: **rectangle** and **polygon**. Rectangle is faster to define; polygon is worth the effort for irregular structures.",
-        "Add the image by dragging it onto the question or selecting the box below the question text. GIF, JPG, JPEG, and PNG are accepted.",
-        "Choose the variant first, then drag to outline the region. A hot spot can be repositioned by pressing and holding, then dragging it.",
-        "Students can pinch to zoom on the iPad, so fine structures stay answerable."
+        "Pick **rectangle** or **polygon** first. Rectangle is quicker to define. Polygon is worth the effort on irregular structures.",
+        "Add the image by dragging it onto the question or selecting the box below the question text. GIF, JPG, JPEG, and PNG all work.",
+        "Drag to outline the correct region. To move a hot spot later, press and hold, then drag it.",
+        "Students can pinch to zoom on the iPad, so small structures stay answerable."
       ]
     },
     {
@@ -44,28 +44,28 @@
       "alt": "Photograph of an iPad in Examplify preview mode showing a Hot Spot question reading 'Where is the brain?' above a greyscale MRI image. A blue teardrop pin has been dropped near the top of the image. Instructional text explains that the student selects an answer by clicking the desired location on the image, can move the pin by clicking another location, and can remove it by clicking it once. Zoom and reset controls run down the left side.",
       "caption": "A Hot Spot question in Examplify preview on an OME iPad. The blue pin is what the student places.",
       "source": "OME onboarding document, 2023",
-      "note": "The dark rectangle covering part of the MRI is present in the original source photograph."
+      "note": "The dark rectangle over part of the MRI is in the original source photograph."
     },
     { "type": "h3", "text": "Drag and Drop" },
     {
       "type": "p",
-      "text": "The student reviews a list of possible answers and drags the correct ones into an answer box. Two properties matter, and both are routinely misunderstood."
+      "text": "The student reads a list of possible answers and drags the correct ones into an answer box. Two things about it catch people out."
     },
     {
       "type": "callout",
       "tone": "critical",
-      "title": "Drag and Drop is not an ordering question",
-      "text": "The sequence in which a student drags answers into the box does **not** matter. If sequence needs to be scored, this is the wrong item type — the Legacy portal has a separate Ordering type for that."
+      "title": "Drag and Drop does not score sequence",
+      "text": "The order a student drags answers into the box makes no difference to the score. If you need sequence scored, use the Ordering type instead."
     },
     {
       "type": "callout",
       "tone": "warn",
-      "title": "Partial credit here can subtract",
-      "text": "With partial credit enabled, a student earns points for each correct answer dragged in and **loses the same amount** for each incorrect one. The question score is floored at 0, so it never goes negative. Because of that penalty, say so in the stem — for example: Answer carefully, dragging incorrect answers into the box can reduce credit for this question. Otherwise students guess and the item behaves unpredictably."
+      "title": "Partial credit here subtracts points",
+      "text": "With partial credit on, a student gains points for each correct answer dragged in and loses the same amount for each wrong one. The score stops at 0 rather than going negative. Warn them in the stem, for example: answer carefully, because dragging incorrect answers into the box can reduce credit. Without that warning students guess and the item stops behaving predictably."
     },
     {
       "type": "p",
-      "text": "Keep answer choices short. Multiple or large images inside a drag-and-drop choice are supported but render badly."
+      "text": "Keep answer choices short. You can put images inside a choice, but large or multiple images render badly."
     },
     {
       "type": "figurepair",
@@ -86,20 +86,20 @@
     },
     {
       "type": "todo",
-      "text": "The Legacy portal also offers Ordering and Matrix question types. Neither is in the OME list above and neither appears in any onboarding document, but Ordering does appear in the student-facing orientation deck, so students may encounter it. Decide whether OME wants to sanction either type for pre-clerkship exams and whether to document them here."
+      "text": "The Legacy portal also offers Ordering and Matrix question types. Neither is in the OME list above and neither appears in any onboarding document, but Ordering is in the student-facing orientation deck, so students may meet it. Decide whether OME wants to sanction either type for pre-clerkship exams and whether to document them here."
     },
     {
       "type": "links",
       "title": "Vendor reference (Legacy)",
       "items": [
         { "label": "Legacy Portal: Tips for Hot Spot Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166205085709-Legacy-Portal-Tips-for-Hot-Spot-Questions", "note": "Rectangle and polygon setup, image handling." },
-        { "label": "Legacy Portal: Tips for Drag-and-Drop Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166206653709-Legacy-Portal-Tips-for-Drag-and-Drop-Questions", "note": "Partial credit behaviour and stem wording guidance." },
-        { "label": "Legacy Portal: Tips for Multiple Choice Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166164713485-Legacy-Portal-Tips-for-Multiple-Choice-Questions", "note": "Includes multiple correct answers and the two partial-credit modes." },
+        { "label": "Legacy Portal: Tips for Drag-and-Drop Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166206653709-Legacy-Portal-Tips-for-Drag-and-Drop-Questions", "note": "Partial credit behavior and how to word the stem." },
+        { "label": "Legacy Portal: Tips for Multiple Choice Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166164713485-Legacy-Portal-Tips-for-Multiple-Choice-Questions", "note": "Multiple correct answers and the two partial credit modes." },
         { "label": "Legacy Portal: Tips for Fill in the Blank Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166168163085-Legacy-Portal-Tips-for-Fill-in-the-Blank-Questions", "note": "Blanks, dropdowns, alternative spellings." },
         { "label": "Legacy Portal: Tips for Matching Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166157395981-Legacy-Portal-Tips-for-Matching-Questions", "note": "If you use it despite the OME preference." },
-        { "label": "Legacy Portal: Tips for Ordering Questions", "url": "https://support.examsoft.com/hc/en-us/articles/12097843461005-Legacy-Portal-Tips-for-Ordering-Questions", "note": "The correct type when sequence must be scored." },
+        { "label": "Legacy Portal: Tips for Ordering Questions", "url": "https://support.examsoft.com/hc/en-us/articles/12097843461005-Legacy-Portal-Tips-for-Ordering-Questions", "note": "The right type when sequence has to be scored." },
         { "label": "Legacy Portal: Tips for Matrix Questions", "url": "https://support.examsoft.com/hc/en-us/articles/12014749084813-Legacy-Portal-Tips-for-Matrix-Questions", "note": "Not currently used at JABSOM." },
-        { "label": "Legacy Portal: Tips for Essay Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166212020365-Legacy-Portal-Tips-for-Essay-Questions", "note": "Requires a grading workflow; talk to OME first." }
+        { "label": "Legacy Portal: Tips for Essay Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166212020365-Legacy-Portal-Tips-for-Essay-Questions", "note": "Needs a grading workflow. Talk to OME first." }
       ]
     }
   ]

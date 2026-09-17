@@ -10,9 +10,14 @@ maintained since 2014.
 
 - **Audience:** a physician who is an expert clinician and a complete novice in
   ExamSoft.
-- **Output:** one self-contained `index.html` plus CSS, JS, and images. No
-  framework, no runtime dependencies, no build server.
+- **Output:** two pages. `index.html` is the onboarding path, short and
+  task-focused, aimed at a course director's first week. `docs/index.html` is
+  the full reference. No framework, no runtime dependencies, no build server.
 - **Deploys to:** GitHub Pages under the `UHMed-OME` organization.
+
+The split is deliberate. Onboarding and reference have different jobs: one
+gets somebody productive in a week, the other answers a question in six
+months. Keeping them on one page made both worse.
 
 ---
 
@@ -39,20 +44,27 @@ dependencies on purpose, so it will still run in five years.
 ```
 content/
   site.json               Title, portal facts, contacts, version, review date
+  home.json               The onboarding page
   sections/
-    01-start-here.json    One file per section, rendered in filename order
-    02-account-and-login.json
+    02-account-and-login.json   One file per docs section, in filename order
+    03-preferences.json
     ...
 build/
-  build.mjs               The whole build. Reads content/, writes index.html
+  build.mjs               Renders index.html and docs/index.html from content/
+  build_deck.py           Renders the slide deck from the same content/
+  check-links.mjs         Reports vendor link rot
 assets/
-  css/tokens.css          ALL colour, type, spacing values. The design swap point
+  css/tokens.css          ALL color, type, spacing values. The design swap point
   css/styles.css          Layout and components. Declares no raw values
   css/print.css           Print / PDF rules
   js/site.js              Theme toggle, mobile nav, active-section highlight
 images/                   Screenshots extracted from the source documents
-index.html                Generated. Committed so GitHub Pages can serve it
+index.html                Generated onboarding page. Committed for Pages
+docs/index.html           Generated reference. Committed for Pages
 ```
+
+Section files start at `02` because section 01 used to be "Start here" and
+became the home page. Filenames only control order, so the gap is harmless.
 
 **Content is never edited in markup.** If you find yourself editing
 `index.html`, stop — your change will be overwritten on the next build. Edit

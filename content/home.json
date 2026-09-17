@@ -1,0 +1,70 @@
+{
+  "id": "home",
+  "title": "Start here",
+  "lede": "You have been made a co-course director. Here is what you own, what OME does, and what to do this week.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "ExamSoft is where JABSOM writes exam questions, assembles them into an assessment, delivers it on student iPads, and reports on performance. You will spend nearly all your time in two places: the **question bank**, and the **assessment** you build from it. Writing a question does not put it on an exam. Those are separate steps."
+    },
+    {
+      "type": "table",
+      "caption": "Who does what",
+      "cols": ["You", "OME pre-clerkship staff"],
+      "rows": [
+        ["Write and tag the questions", "Preview the assessment on a real iPad"],
+        ["Build the assessment, usually from last year's", "Proof it and send corrections back to you"],
+        ["Hit the draft deadline", "Print two hard copies as a backup"],
+        ["Review results and adjust scoring", "Build the proctor PowerPoint and post the exam"]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "Your draft is due 7 business days before the exam",
+      "text": "Every other date is scheduled backwards from that one. If you remember nothing else on this page, remember this."
+    },
+    { "type": "h3", "text": "Do these three things this week" },
+    {
+      "type": "steps",
+      "items": [
+        {
+          "t": "Check that you can sign in",
+          "d": "Go to [the portal](https://ei.examsoft.com/GKWeb/login/hawaiimed). Institution ID is `hawaiimed`. It uses your UH login, so there is no separate ExamSoft password. If it refuses you, see [Account and sign-in](docs/#account)."
+        },
+        {
+          "t": "Set your fonts to Arial 12",
+          "d": "My Preferences, Question Creation tab, two font fields, then Save. Do it before you write anything or you will be reformatting later. Steps and a screenshot are in [Set your preferences first](docs/#preferences)."
+        },
+        {
+          "t": "Open last year's exam for your course",
+          "d": "You will almost certainly build this year's version from it rather than starting fresh. See [Building an assessment](docs/#building)."
+        }
+      ]
+    },
+    { "type": "h3", "text": "How an exam gets delivered" },
+    {
+      "type": "timeline",
+      "items": [
+        { "when": "7 business days before", "who": "You", "what": "Draft complete", "detail": "Questions written, ordered, categorized, attached. This is the handoff." },
+        { "when": "7 to 2 days before", "who": "OME staff", "what": "Proofing", "detail": "Preview on iPad, corrections back to you, re-preview, print backups, build proctor materials." },
+        { "when": "36 to 48 hours before", "who": "OME staff", "what": "Posted", "detail": "The download window opens so students can pull the exam onto their iPads." },
+        { "when": "Exam day", "who": "Proctor", "what": "Password announced", "detail": "Nobody can open the exam before this, even with the file downloaded." },
+        { "when": "Minutes after upload", "who": "You", "what": "Results visible", "detail": "The assessment overview shows how the class did." }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Three things that surprise new course directors",
+      "text": "Every question needs at least one category tag, or it disappears from reporting. Drag and Drop does not score the order answers are dragged in. And once the exam is posted and one student has downloaded it, the questions lock."
+    },
+    { "type": "doccards", "title": "The reference" },
+    {
+      "type": "p",
+      "text": "Everything above is the short version. The reference covers each area in full, with the vendor's Legacy articles linked from every section."
+    },
+    { "type": "h3", "text": "Who to ask" },
+    { "type": "contacts" }
+  ]
+}
