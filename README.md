@@ -204,6 +204,56 @@ Checked 17 September 2026:
 
 ---
 
+## The slide deck
+
+A 16:9 deck is generated from the **same** `content/` JSON, so the site and the
+deck cannot drift apart:
+
+```bash
+pip install python-pptx
+python build/build_deck.py
+```
+
+Output: `dist/ExamSoft-for-Course-Directors.pptx` (34 slides). `dist/` is
+git-ignored — the deck is a build artifact, not source.
+
+It is the faculty counterpart to the student *Examplify for iPad* orientation
+deck and mirrors its structure and voice: an uppercase eyebrow, a short title,
+then content. It does not repeat student-facing material.
+
+### How slide text is derived
+
+Slide bullets are **condensed** from each section, not written twice. The
+derivation ranks by signal: `critical` and `jabsom` callout titles first, then
+`steps` titles, then `kv` pairs, then list items — capped at five per slide.
+Tables, the exam-cycle timeline, images, and contacts get purpose-built slides
+rather than being flattened into bullets.
+
+If a section condenses badly, override it rather than rewording the section.
+Add a `deck` object alongside `blocks`:
+
+```json
+"deck": { "bullets": ["First point", "Second point"] }
+```
+
+Images are downscaled into `dist/_img/` for slide use — the full-resolution
+originals in `images/` are for the website. Alt text is written into the
+PowerPoint `descr` attribute, so it survives into Google Slides, and each image
+slide also carries its alt text in the speaker notes.
+
+### Turning it into Google Slides
+
+Upload `dist/ExamSoft-for-Course-Directors.pptx` to Drive and open it with
+Google Slides, or use **File → Import slides**. Layout, palette, tables, and
+images convert cleanly.
+
+Video does **not** survive as a live embed through that conversion, which is
+why recordings appear as link slides. If you want true inline playback in
+Slides, use **Insert → Video** on the relevant slide after converting; that
+change lives in Slides only and will be lost if the deck is regenerated.
+
+---
+
 ## Applying the design system
 
 Every colour, type size, space, radius, and shadow is a custom property in

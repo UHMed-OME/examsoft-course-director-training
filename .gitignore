@@ -15,3 +15,4 @@ npm-debug.log*
 # Scratch
 *.tmp
 scratch/
+dist/
