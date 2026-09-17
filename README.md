@@ -226,7 +226,7 @@ pip install python-pptx
 python build/build_deck.py
 ```
 
-Output: `dist/ExamSoft-for-Course-Directors.pptx` (34 slides). `dist/` is
+Output: `dist/ExamSoft-for-Course-Directors.pptx` (19 slides). `dist/` is
 git-ignored — the deck is a build artifact, not source.
 
 It is the faculty counterpart to the student *Examplify for iPad* orientation
@@ -272,18 +272,13 @@ Every colour, type size, space, radius, and shadow is a custom property in
 `assets/css/tokens.css`. No other stylesheet declares a raw value. To restyle
 the site, change values in that one file.
 
-The design system at `claude.ai/design/p/fa47af3f-232b-4a44-a336-7f61e227c21f`
-**could not be read when this site was built.** `DesignSync` requires a
-one-time interactive authorisation that a non-interactive session cannot
-perform. To pull it in:
+The values in `tokens.css` come from the JABSOM Design System project at
+`claude.ai/design/p/fa47af3f-232b-4a44-a336-7f61e227c21f`. Brand colors are
+Mānoa Green (`#024731`) and Kelly Green (`#009A44`). Fonts are Inter (primary)
+and Source Serif 4 (editorial), loaded from Google Fonts.
 
-1. Run `/design-login` once from an interactive Claude Code session on this
-   machine. Headless runs then reuse that authorisation.
-2. Read the project's token files and transfer the values into `tokens.css`.
-
-Until then the palette is a JABSOM-aligned placeholder built on UH Mānoa green
-(`#024731`). Every text/background pair in it meets WCAG 2.2 AA contrast. If
-you change a value, re-check the pair.
+Every text/background pair meets WCAG 2.2 AA contrast. If you change a value,
+re-check the pair.
 
 ---
 
