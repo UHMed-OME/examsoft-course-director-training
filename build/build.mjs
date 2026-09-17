@@ -59,11 +59,14 @@ const renderers = {
     ${b.caption ? `<p class="local-video__caption">${inline(b.caption)}</p>` : ""}
   </div>`,
 
-  steps: (b) => `<ol class="steps">${b.items.map(s =>
-    `<li><span class="steps__t">${inline(s.t)}</span><span class="steps__d">${inline(s.d)}</span>${
-      s.fig ? `<figure class="steps__fig"><img src="${asset(s.fig.src)}" alt="${esc(s.fig.alt)}" loading="lazy" decoding="async"><figcaption>${inline(s.fig.caption || "")}</figcaption></figure>` : ""
-    }</li>`
-  ).join("")}</ol>`,
+  steps: (b) => {
+    const cls = b.layout === "cards" ? "steps steps--cards" : "steps";
+    return `<ol class="${cls}">${b.items.map(s =>
+      `<li><span class="steps__t">${inline(s.t)}</span><span class="steps__d">${inline(s.d)}</span>${
+        s.fig ? `<figure class="steps__fig"><img src="${asset(s.fig.src)}" alt="${esc(s.fig.alt)}" loading="lazy" decoding="async"><figcaption>${inline(s.fig.caption || "")}</figcaption></figure>` : ""
+      }</li>`
+    ).join("")}</ol>`;
+  },
 
   timeline: (b) => `<ol class="timeline">${b.items.map(t =>
     `<li><span class="timeline__when">${inline(t.when)}</span>

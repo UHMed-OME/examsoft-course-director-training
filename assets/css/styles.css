@@ -475,6 +475,22 @@ h2:hover .section-permalink, .section-permalink:focus-visible { opacity: 1; }
 
 .steps__t { display: block; font-weight: 680; margin-bottom: var(--sp-1); }
 .steps__d { color: var(--c-text-muted); }
+
+.steps--cards { counter-reset: step; }
+.steps--cards > li {
+  padding: var(--sp-5) var(--sp-5) var(--sp-5) 4.5rem;
+  margin-bottom: var(--sp-4);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-glass-sm);
+}
+.steps--cards > li::before {
+  top: var(--sp-5);
+  left: var(--sp-5);
+}
 .steps__fig {
   margin: var(--sp-3) 0 0;
 }

@@ -6,6 +6,7 @@
   "blocks": [
     {
       "type": "steps",
+      "layout": "cards",
       "items": [
         {
           "t": "Sign in to the portal",
