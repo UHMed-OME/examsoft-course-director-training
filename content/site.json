@@ -1,0 +1,36 @@
+{
+  "institution": "John A. Burns School of Medicine",
+  "institutionShort": "JABSOM",
+  "office": "Office of Medical Education",
+  "title": "ExamSoft for Course Directors",
+  "subtitle": "Legacy portal onboarding for JABSOM pre-clerkship course directors",
+  "audienceNote": "Written for a clinician who is new to ExamSoft. It assumes no prior exposure to the portal and no familiarity with assessment software.",
+  "reviewed": "2026-09-17",
+  "academicYear": "AY 2026-2027",
+  "version": "1.0.0",
+  "portal": {
+    "name": "ExamSoft Legacy portal",
+    "url": "https://ei.examsoft.com/GKWeb/login/hawaiimed",
+    "institutionId": "hawaiimed",
+    "edition": "Legacy",
+    "editionNote": "JABSOM runs the Legacy portal, not Enterprise. Vendor documentation exists in both flavors and the screens differ. Every vendor link on this page is the Legacy article."
+  },
+  "contacts": [
+    {
+      "role": "Faculty and technical support",
+      "name": "Jesse Thompson",
+      "email": "jessetho@hawaii.edu",
+      "org": "Office of Medical Education",
+      "note": "First stop for portal access, permissions, and anything that is not working."
+    },
+    {
+      "role": "Exam Taker (student) account access",
+      "name": "Angel Oasay",
+      "email": "preclerk@hawaii.edu",
+      "org": "OME pre-clerkship",
+      "note": "Student-side accounts, rosters, and exam-taker records."
+    }
+  ],
+  "vendorTicketPolicy": "Vendor tickets are filed by OME, not by course directors. If you hit something that looks like an ExamSoft defect, send it to Jesse rather than contacting ExamSoft directly, so the ticket carries the institution context.",
+  "footerNote": "Maintained by the Office of Medical Education. Content lives in data files in this repository; see the README for how to update it."
+}

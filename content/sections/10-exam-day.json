@@ -1,0 +1,57 @@
+{
+  "id": "exam-day",
+  "navLabel": "Exam day",
+  "title": "Exam day",
+  "lede": "What the software does to the device, and what happens when a student gets locked out.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Students take the exam in **Examplify**, the ExamSoft app on the iPad. You will not normally be in the room, but you should know how it behaves, because the questions you get afterwards will be about this."
+    },
+    { "type": "h3", "text": "The device is locked down" },
+    {
+      "type": "p",
+      "text": "Once the exam starts, Examplify takes over the iPad. Screenshots, copy and paste, and internet access are all blocked for the duration. Nothing else on the device is reachable."
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Button combinations can lock a student out",
+      "text": "If a student presses too many button combinations on the iPad, Examplify locks them out of the exam. Recovery requires a **universal code**, also called an exam resume code. The proctor holds it. It is printed on the proctor PowerPoint that OME prepares for every exam."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Codes are not in this repository",
+      "text": "Exam passwords and universal resume codes are per-exam and are never committed here. They live on the OME-prepared proctor materials for that specific sitting."
+    },
+    { "type": "h3", "text": "What students are told to do beforehand" },
+    {
+      "type": "ul",
+      "items": [
+        "Charge the iPad fully before the exam.",
+        "Fully shut down and restart the iPad at least once, which clears most technical problems before they happen.",
+        "Download the exam as soon as the window opens rather than the morning of."
+      ]
+    },
+    { "type": "h3", "text": "The fallback" },
+    {
+      "type": "p",
+      "text": "OME prints **two hard copies** of every exam. They cover device failure and in-house exam takers. A student whose iPad fails mid-exam is told to notify the proctor immediately rather than troubleshoot, because the paper copy and the resume code are both in the room."
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Students cannot open the exam early",
+      "text": "Even with the file downloaded 48 hours ahead, the exam will not open until the password is announced. There is no window in which a student holds an openable exam."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference",
+      "items": [
+        { "label": "Examplify: Exam-Taking Features and Options (Windows, Mac, iPad)", "url": "https://support.examsoft.com/hc/en-us/articles/11167472754445-Examplify-Exam-Taking-Features-and-Options-Windows-Mac-iPad", "note": "What the student sees and can do during a secure exam." },
+        { "label": "Exam Troubleshooting Guide", "url": "https://support.examsoft.com/hc/en-us/articles/12155838507277-Exam-Troubleshooting-Guide", "note": "Vendor troubleshooting reference. At JABSOM, route problems through the proctor and OME first." }
+      ]
+    }
+  ]
+}

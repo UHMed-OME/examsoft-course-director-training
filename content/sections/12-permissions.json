@@ -1,0 +1,54 @@
+{
+  "id": "permissions",
+  "navLabel": "Your account and permissions",
+  "title": "Your account and permissions",
+  "lede": "What OME sets on your account and why. Useful when something you expected to see is not there.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Your access is configured under **Main Access Rights** when OME creates the account. In the Legacy portal, most areas offer **full** or **restricted**, where restricted can be scoped to particular folders rather than the whole institution. The table below is the standard configuration for a new pre-clerkship course director."
+    },
+    {
+      "type": "table",
+      "caption": "Standard Main Access Rights for a new course director",
+      "cols": ["Area", "Setting", "Reason"],
+      "rows": [
+        ["Administration", "Restricted", "Gives portal access without the ability to create other users."],
+        ["Questions", "Full, or scoped to your folders", "You need to write and edit items. Folder scoping is used where a course should only touch its own bank."],
+        ["Assessments", "Full, or scoped to your folders", "You need to build and edit assessments for your course."],
+        ["Categories", "Restricted", "Deliberate. The category tree is shared across all historical data — you apply tags, you do not restructure the tree."],
+        ["Rubrics", "Restricted", "Not used by most pre-clerkship courses."],
+        ["Grading", "Unchecked", "See the warning below."],
+        ["Reports", "Granted", "You need reporting to review performance and run item analysis."],
+        ["External ID", "Your UH SSO identifier", "This is what makes single sign-on resolve to your account."]
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "Grading stays unchecked",
+      "text": "Checking the Grading right turns the account into a **grader-only** account, which is not what a course director needs and will remove access you expect to have. If you have been given a grader account by mistake, the symptom is that you can see grading queues but not the question bank or assessment builder."
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Why Categories is restricted",
+      "text": "Roughly nine years of item data is tagged against the shared category tree. Renaming or moving a node silently changes what past reports mean. If your course needs a category that does not exist, ask OME to add it rather than working around the restriction."
+    },
+    {
+      "type": "p",
+      "text": "If the External ID does not match what UH SSO sends, sign-in fails with the account-not-found error described in [Account and sign-in](#account). That is the single most common access problem."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference (Legacy)",
+      "items": [
+        { "label": "Legacy Portal: Admin User Permissions", "url": "https://support.examsoft.com/hc/en-us/articles/11146896895885-Legacy-Portal-Admin-User-Permissions", "note": "Definitions of full and restricted per area." },
+        { "label": "Legacy Portal: Create Admin Users", "url": "https://support.examsoft.com/hc/en-us/articles/11146898546573-Legacy-Portal-Create-Admin-Users", "note": "The provisioning flow, including External ID." },
+        { "label": "Legacy Portal: Create and Manage Graders and Grading Assignments", "url": "https://support.examsoft.com/hc/en-us/articles/11146942158861-Legacy-Portal-Create-and-Manage-Graders-and-Grading-Assignments", "note": "What the Grading right actually turns on." },
+        { "label": "Legacy Portal: Global Settings", "url": "https://support.examsoft.com/hc/en-us/articles/11147084648973-Legacy-Portal-Global-Settings", "note": "Institution-level settings. OME territory, listed for completeness." },
+        { "label": "Legacy Portal: Add and Manage Exam-Takers", "url": "https://support.examsoft.com/hc/en-us/articles/11146983790349-Legacy-Portal-Add-and-Manage-Exam-Takers", "note": "Student-side accounts. Handled by OME pre-clerkship." }
+      ]
+    }
+  ]
+}

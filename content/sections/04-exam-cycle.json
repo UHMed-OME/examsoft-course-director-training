@@ -1,0 +1,66 @@
+{
+  "id": "exam-cycle",
+  "navLabel": "The JABSOM exam cycle",
+  "title": "The JABSOM exam cycle",
+  "lede": "The schedule your work sits inside. Read this before you plan an exam date.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "This is the part that is genuinely JABSOM-specific. ExamSoft imposes none of it. It exists because a delivered exam on 70-odd iPads has to be proofed, previewed on the real device, printed as a fallback, and wrapped in proctor instructions before a student ever sees it."
+    },
+    {
+      "type": "timeline",
+      "items": [
+        {
+          "when": "7 business days before",
+          "who": "Course director",
+          "what": "Assessment draft complete",
+          "detail": "All questions written, ordered, categorized, and attached to the assessment. This is the handoff point. Hit it as close as you can."
+        },
+        {
+          "when": "7 to 2 business days before",
+          "who": "OME pre-clerkship staff",
+          "what": "Preview, proof, correct, re-preview",
+          "detail": "Staff preview the assessment on an iPad, review it, come back to you on anything unclear, fix errors, and preview again. They print two hard copies for emergencies and in-house exam takers, and prepare the proctor PowerPoint that carries the exam information."
+        },
+        {
+          "when": "36 to 48 hours before",
+          "who": "OME pre-clerkship staff",
+          "what": "Assessment posted",
+          "detail": "Posting opens the download window so students have time to pull the exam onto their iPads. Download start is usually 48 hours prior."
+        },
+        {
+          "when": "Exam day",
+          "who": "Proctor",
+          "what": "Password announced, exam taken",
+          "detail": "Students cannot open the exam until the proctor announces the password. Examplify locks the device down for the duration."
+        },
+        {
+          "when": "Minutes after upload",
+          "who": "Course director",
+          "what": "Performance visible",
+          "detail": "Once answer files upload, the assessment overview in the portal gives you a first read on how the class did."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "\"It is more than just clicking a button\"",
+      "text": "That line is from the original OME onboarding document and it has survived every revision since 2020. Preview, review, correction, re-preview, printing, and proctor prep are sequential and they need the full 7 business days. A draft that lands late compresses the proofing window, not the exam date."
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "The hard lock after posting",
+      "text": "Once an assessment is posted **and at least one student has downloaded it**, you can no longer alter questions or answer keys. Content corrections have to happen before the download window opens."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference (Legacy)",
+      "items": [
+        { "label": "Legacy Portal: Create and Preview a Practice Exam", "url": "https://support.examsoft.com/hc/en-us/articles/11166363468429-Legacy-Portal-Create-and-Preview-a-Practice-Exam", "note": "Useful if you want to see the taker experience before the real thing." }
+      ]
+    }
+  ]
+}

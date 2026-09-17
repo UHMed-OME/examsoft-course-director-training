@@ -1,0 +1,62 @@
+{
+  "id": "video",
+  "navLabel": "Video training",
+  "title": "Video training",
+  "lede": "One OME recording, and an honest account of what happened to the vendor's video library.",
+  "blocks": [
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "Checked 17 September 2026: ExamSoft's training videos are gone",
+      "text": "The Hot Spot and Drag-and-Drop training video cited in the 2023 onboarding document has been **removed from YouTube**. This is not a broken link or a regional block. The video returns \"This video isn't available anymore\", its playlist (ExamSoft Training, *Legacy Webinars*) now contains no videos, and the ExamSoft Training channel has no content at all. There is currently no official ExamSoft video to embed for these question types. Use the written Legacy articles in [Question types](#question-types) instead, which are current and complete."
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "ExamSoft's own articles still link to removed videos",
+      "text": "The live Legacy article *Assign Categories to Questions* recommends a recorded webinar, \"The What, Why, and How of ExamSoft's Most Powerful Tool, Categories!\", and links it on YouTube. That video has also been removed. Treat any video reference inside a vendor article as unverified until you click it. This is worth raising with ExamSoft through OME — their documentation points at content they have taken down."
+    },
+    {
+      "type": "video",
+      "title": "OME ExamSoft training recording",
+      "provider": "drive",
+      "id": "1kZHrJ6W3FH2XXttdue9xkA7OT1I09uFS",
+      "url": "https://drive.google.com/file/d/1kZHrJ6W3FH2XXttdue9xkA7OT1I09uFS/view",
+      "embed": false,
+      "recorded": "14 November 2022",
+      "status": "restricted",
+      "statusNote": "This file is currently shared with its owner only (omeit@hawaii.edu). Until sharing is widened, the link will not open for course directors and it cannot be embedded on this page. See the TODO below.",
+      "note": "An OME-recorded walkthrough of the portal, made alongside a live training session. It predates some interface changes but the JABSOM workflow in it is still accurate."
+    },
+    {
+      "type": "todo",
+      "text": "Two decisions for the maintainer. First, widen sharing on the OME training recording so course directors can open it — at minimum to the UH domain, or to named faculty. Once that is done, set \"embed\": true on the video block in content/sections/13-video-training.json and it will render as an inline player. Second, decide whether OME wants to record a replacement for the removed vendor video covering Hot Spot and Drag and Drop, since the screenshots in Question types are now the only visual reference for them."
+    },
+    {
+      "type": "h3",
+      "text": "Archived reference: the removed vendor video"
+    },
+    {
+      "type": "p",
+      "text": "Recorded here so the citation is not lost if ExamSoft republishes the material or OME finds a local copy. The 2023 onboarding document pointed to a single video covering both question types, with these segments:"
+    },
+    {
+      "type": "table",
+      "caption": "Segments cited in the 2023 OME onboarding document",
+      "cols": ["Topic", "Timestamp", "Status"],
+      "rows": [
+        ["Drag and Drop", "3:56 to 13:07", "Source video removed"],
+        ["Hot Spot", "19:22 to 22:20", "Source video removed"]
+      ]
+    },
+    {
+      "type": "links",
+      "title": "Where vendor video still exists",
+      "items": [
+        { "label": "Examplify: Get Started with Examplify (Video Guide)", "url": "https://support.examsoft.com/hc/en-us/articles/11145989728525-Examplify-Get-Started-with-Examplify-Video-Guide", "note": "Student-side app orientation, hosted on the support site rather than YouTube." },
+        { "label": "ExamSoft on YouTube (main channel)", "url": "https://www.youtube.com/@ExamSoft", "note": "Active, but product overviews and marketing rather than portal training. No question-type content." },
+        { "label": "ExamSoft Training channel", "url": "https://www.youtube.com/@ExamSoftTraining", "note": "The channel the 2023 link pointed into. Currently empty — listed so a future maintainer can check whether it has been repopulated." }
+      ]
+    }
+  ]
+}

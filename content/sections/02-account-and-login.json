@@ -1,0 +1,49 @@
+{
+  "id": "account",
+  "navLabel": "Account and sign-in",
+  "title": "Account and sign-in",
+  "lede": "Where the portal lives, how authentication works, and the one error message you are likely to hit.",
+  "blocks": [
+    {
+      "type": "kv",
+      "title": "The essentials",
+      "items": [
+        { "k": "Faculty portal", "v": "[https://ei.examsoft.com/GKWeb/login/hawaiimed](https://ei.examsoft.com/GKWeb/login/hawaiimed)" },
+        { "k": "Institution ID", "v": "`hawaiimed` — all lowercase, one word" },
+        { "k": "Portal edition", "v": "Legacy (not Enterprise)" },
+        { "k": "Authentication", "v": "UH single sign-on. There is no separate ExamSoft password." },
+        { "k": "Account address", "v": "Your @hawaii.edu address, because SSO matches on it" }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "note",
+      "title": "Legacy, not Enterprise",
+      "text": "ExamSoft publishes two parallel sets of documentation. The Enterprise articles describe screens JABSOM does not have. Every vendor link on this page is the Legacy article. If you search the support site yourself, check that the title starts with **Legacy Portal**."
+    },
+    { "type": "h3", "text": "If sign-in fails" },
+    {
+      "type": "p",
+      "text": "The error you are most likely to see is **\"No associated ExamSoft account found\"**. It means the External ID on your ExamSoft account does not match the identifier UH SSO is sending. It is not a password problem and it is not a browser problem."
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "An incognito window will not fix this",
+      "text": "This is an admin-side correction to the External ID field on your account. Email Jesse Thompson at [jessetho@hawaii.edu](mailto:jessetho@hawaii.edu) and it gets corrected in the portal. Retrying in a private window wastes your time."
+    },
+    {
+      "type": "p",
+      "text": "Note that this is the same field the vendor sometimes calls the **ePPN ID** in SSO documentation."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference (Legacy)",
+      "items": [
+        { "label": "Legacy Portal: Create Admin Users", "url": "https://support.examsoft.com/hc/en-us/articles/11146898546573-Legacy-Portal-Create-Admin-Users", "note": "What OME does when provisioning you, including the External ID field." },
+        { "label": "Legacy Portal: Admin User Permissions", "url": "https://support.examsoft.com/hc/en-us/articles/11146896895885-Legacy-Portal-Admin-User-Permissions", "note": "How full and restricted rights differ per area." },
+        { "label": "Get Started with User and Course Management (Enterprise and Legacy)", "url": "https://support.examsoft.com/hc/en-us/articles/11146745836429-Get-Started-with-User-and-Course-Management-Enterprise-Legacy", "note": "Covers both editions; read the Legacy passages." }
+      ]
+    }
+  ]
+}

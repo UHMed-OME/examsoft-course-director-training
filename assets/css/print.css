@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Print / PDF.
+   The site has to be handable to a course director on paper, so print is a
+   first-class target rather than an afterthought. Tested via the browser's
+   Save as PDF at Letter size.
+   ========================================================================== */
+
+@media print {
+
+  /* Force the light palette. A dark background wastes toner and renders
+     callout tints illegibly. */
+  :root,
+  :root[data-theme="dark"] {
+    --c-bg:            #ffffff;
+    --c-surface:       #ffffff;
+    --c-surface-2:     #ffffff;
+    --c-text:          #000000;
+    --c-text-muted:    #333333;
+    --c-text-faint:    #444444;
+    --c-link:          #000000;
+    --c-border:        #999999;
+    --c-border-strong: #666666;
+    --c-brand:         #000000;
+    --c-brand-strong:  #000000;
+    --c-brand-soft:    #ffffff;
+    --shadow-1: none;
+    --shadow-2: none;
+  }
+
+  @page {
+    margin: 16mm 14mm;
+  }
+
+  html, body {
+    background: #fff;
+    font-size: 10.5pt;
+  }
+
+  /* Chrome that means nothing on paper. */
+  .skip-link,
+  .sidebar,
+  .topbar,
+  .theme-toggle,
+  .nav-toggle,
+  .backtotop,
+  .section-permalink {
+    display: none !important;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .content {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Cover block */
+  .cover {
+    border: none;
+    padding: 0 0 6mm 0;
+    margin: 0 0 6mm 0;
+    border-bottom: 2pt solid #000;
+    break-after: page;
+  }
+
+  .cover__meta {
+    display: block;
+  }
+
+  /* Print-only table of contents, built by build.mjs. */
+  .print-toc {
+    display: block !important;
+    break-after: page;
+  }
+
+  .print-toc ol {
+    columns: 2;
+    column-gap: 10mm;
+  }
+
+  /* Sections */
+  .section {
+    break-before: page;
+    break-inside: auto;
+    padding: 0;
+    border: none;
+  }
+
+  .section:first-of-type {
+    break-before: avoid;
+  }
+
+  h2, h3, h4 {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  p, li, tr, figure, .callout, .steps li, .timeline li {
+    break-inside: avoid;
+  }
+
+  /* Expose link targets, since a printed link is useless otherwise.
+     Internal anchors are skipped — a page reference would be noise. */
+  .content a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #333;
+    word-break: break-all;
+  }
+
+  .content a[href^="#"]::after,
+  .content a[href^="mailto:"]::after {
+    content: none;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  /* Callouts keep their structure via rules, not fills. */
+  .callout {
+    background: #fff;
+    border: 1pt solid #000;
+    border-left: 4pt solid #000;
+  }
+
+  .callout__label {
+    color: #000;
+  }
+
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 0.5pt solid #666;
+  }
+
+  thead {
+    display: table-header-group;   /* repeat headers across pages */
+  }
+
+  /* Images should not be blown across a page break, and should stay legible. */
+  figure img {
+    max-height: 105mm;
+    object-fit: contain;
+    border: 0.5pt solid #999;
+  }
+
+  .figurepair {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* An embedded player is meaningless on paper; show the fallback instead. */
+  .video__frame {
+    display: none;
+  }
+
+  .video__print-note {
+    display: block !important;
+  }
+
+  details {
+    display: block;
+  }
+
+  details > summary {
+    list-style: none;
+  }
+
+  details[open] > *,
+  details > * {
+    display: revert;
+  }
+}

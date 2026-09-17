@@ -1,0 +1,49 @@
+{
+  "id": "start-here",
+  "navLabel": "Start here",
+  "title": "Start here",
+  "lede": "What this page is, what you are responsible for, and the three things to do in your first week.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "You are a co-course director. ExamSoft is the system JABSOM uses to write exam questions, assemble them into an assessment, deliver it on student iPads, and report on performance. You will spend most of your time in two places: the **question bank** and the **assessment** built from it."
+    },
+    {
+      "type": "p",
+      "text": "You do not run the exam alone. OME pre-clerkship staff handle preview, proofing, printing, proctor materials, and posting. Your job is the academic content and the deadline."
+    },
+    {
+      "type": "callout",
+      "tone": "critical",
+      "title": "The one deadline that matters",
+      "text": "Your assessment draft is due **7 business days before the exam date**. Everything downstream is scheduled off that date. See [The JABSOM exam cycle](#exam-cycle)."
+    },
+    { "type": "h3", "text": "Your first week" },
+    {
+      "type": "steps",
+      "items": [
+        {
+          "t": "Confirm you can sign in",
+          "d": "Your account is provisioned to your @hawaii.edu address and uses UH single sign-on. There is no separate ExamSoft password. See [Account and sign-in](#account)."
+        },
+        {
+          "t": "Set your font preferences",
+          "d": "Do this before you write a single question. It is a two-field change that prevents inconsistent formatting across the whole bank. See [Set your preferences first](#preferences)."
+        },
+        {
+          "t": "Open last year's exam for your course",
+          "d": "Most JABSOM assessments are not written from scratch. Read last year's before you plan this year's. See [Building an assessment](#building)."
+        }
+      ]
+    },
+    { "type": "h3", "text": "What this page does not cover" },
+    {
+      "type": "ul",
+      "items": [
+        "Student-facing instructions. Those live in the OME student orientation deck for Examplify on iPad.",
+        "Grading workflows for essay or rubric-scored items. Ask OME if your course needs them.",
+        "Anything specific to the Enterprise portal. JABSOM is on Legacy and the screens differ."
+      ]
+    }
+  ]
+}

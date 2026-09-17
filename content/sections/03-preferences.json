@@ -1,0 +1,48 @@
+{
+  "id": "preferences",
+  "navLabel": "Set your preferences first",
+  "title": "Set your preferences first",
+  "lede": "The first thing a new JABSOM course director does in the portal. Two fields, one Save.",
+  "blocks": [
+    {
+      "type": "callout",
+      "tone": "jabsom",
+      "title": "JABSOM convention, not an ExamSoft default",
+      "text": "ExamSoft ships with its own font defaults. JABSOM standardizes on **Arial 12** so that questions written by different course directors across nine years of item data render consistently when they are pulled into the same assessment. Do this before you write or import anything."
+    },
+    { "type": "h3", "text": "Steps" },
+    {
+      "type": "steps",
+      "items": [
+        { "t": "Open the account menu", "d": "Hover the gear icon at the top right of any portal page, then choose **My Preferences**." },
+        { "t": "Go to the Question Creation tab", "d": "It is the first of the tabs across the top: Question Creation, Assessment Creation, Graders, Reporting." },
+        { "t": "Set General Options (All Question Types)", "d": "Set **Question Fonts** to **Arial**, size **12**." },
+        { "t": "Set Multiple Choice Answers", "d": "Set **Answer Fonts** to **Arial**, size **12**." },
+        { "t": "Save", "d": "Click **Save Preferences**. Not Revert to Default — that discards the change." }
+      ]
+    },
+    {
+      "type": "figure",
+      "src": "images/my-preferences-question-creation.png",
+      "alt": "ExamSoft Legacy portal My Preferences page on the Question Creation tab. Red annotations circle the gear account menu at top right with My Preferences selected, the Question Creation tab, the Question Fonts dropdown set to Arial size 12 under General Options for All Question Types, the Answer Fonts dropdown set to Arial size 12 under Multiple Choice Answers, and the Save Preferences button at the bottom.",
+      "caption": "My Preferences, Question Creation tab. Both font controls set to Arial 12, then Save Preferences.",
+      "source": "OME onboarding document, 2023",
+      "flag": "This screenshot shows a former OME staff member's name in the account menu at top right. Pending a decision to crop or recapture — see the README."
+    },
+    {
+      "type": "p",
+      "text": "The other preference tabs can stay at their defaults. **Partial Credit** and **Number of Answer Choices** are per-question decisions you make while writing, not global settings you need to change now."
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference (Legacy)",
+      "items": [
+        { "label": "Legacy Portal: Set Your Grade Preferences", "url": "https://support.examsoft.com/hc/en-us/articles/11167921847821-Legacy-Portal-Set-Your-Grade-Preferences", "note": "Shows how to reach My Preferences via the gear icon. Covers the grade export tab rather than Question Creation." }
+      ]
+    },
+    {
+      "type": "todo",
+      "text": "ExamSoft does not appear to publish a Legacy article specific to the Question Creation preferences tab. The step list above comes from the OME onboarding documents and the screenshot. Confirm whether a vendor article exists, or leave this as JABSOM-documented only."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node (the build has no dependencies; these are here in case a tool adds them)
+node_modules/
+npm-debug.log*
+
+# Scratch
+*.tmp
+scratch/

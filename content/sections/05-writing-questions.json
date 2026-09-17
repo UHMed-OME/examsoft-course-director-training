@@ -1,0 +1,50 @@
+{
+  "id": "questions",
+  "navLabel": "Writing questions",
+  "title": "Writing questions",
+  "lede": "Where questions live, how to create one, and the tagging rule that is not optional at JABSOM.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Questions live in the question bank, reached from the **Questions** menu at the top of any portal page, or from **Create Questions** on the portal home page. A question is an object in the bank; an assessment is a selection of those objects. Writing a question does not put it on an exam."
+    },
+    { "type": "h3", "text": "The tagging rule" },
+    {
+      "type": "callout",
+      "tone": "jabsom",
+      "title": "At least one category on every question",
+      "text": "This is a JABSOM requirement, enforced by practice rather than by the software. Every question must carry at least one category tag. Without it the question is invisible to category reporting, which is how the school evaluates performance by topic across a course and across years."
+    },
+    {
+      "type": "p",
+      "text": "You can tag while writing a question using the **Add or Remove Category** button, then search or scroll the tree and select the green plus sign. If you are fixing a batch of untagged questions, select their checkboxes in the questions table, choose **Questions Bulk Edit Options** at the bottom of the screen, then **Change Category Assignments**."
+    },
+    {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Apply tags. Do not restructure the tree.",
+      "text": "The category tree is shared across every course and roughly nine years of historical item data. Renaming or moving a node changes the meaning of past reports. Your account is deliberately set to **restricted** on Categories for this reason. If the tree is missing something your course needs, ask OME rather than adding it yourself."
+    },
+    { "type": "h3", "text": "Practical notes" },
+    {
+      "type": "ul",
+      "items": [
+        "Set your fonts before you start. See [Set your preferences first](#preferences).",
+        "**Partial Credit** on a multiple-answer question also restricts how many choices a student can select — two selectable when there are two correct answers, and so on.",
+        "**+/- Partial Credit** awards credit for correct selections and subtracts for incorrect ones. If you use it, say so in the question stem so students do not guess blind.",
+        "Fill in the Blank supports up to 15 blanks per question, and alternative accepted spellings are separated by a vertical pipe character."
+      ]
+    },
+    {
+      "type": "links",
+      "title": "Vendor reference (Legacy)",
+      "items": [
+        { "label": "Legacy Portal: Basic Steps to Create and Edit Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166014769165-Legacy-Portal-Basic-Steps-to-Create-and-Edit-Questions", "note": "Start here. The core create-and-edit workflow." },
+        { "label": "Legacy Portal: Assign Categories to Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11147551863437-Legacy-Portal-Assign-Categories-to-Questions", "note": "Single and bulk tagging." },
+        { "label": "Legacy Portal: Bulk Editing", "url": "https://support.examsoft.com/hc/en-us/articles/12035752484365-Legacy-Portal-Bulk-Editing", "note": "Changing many questions at once." },
+        { "label": "Get Started with Questions and Categories (Enterprise and Legacy)", "url": "https://support.examsoft.com/hc/en-us/articles/12323457828877-Get-Started-with-Questions-Categories-Enterprise-Legacy", "note": "Conceptual overview of how questions and categories relate." },
+        { "label": "Legacy Portal: Prepare an RTF Question File to Import", "url": "https://support.examsoft.com/hc/en-us/articles/11167971749261-Legacy-Portal-Prepare-an-RTF-Question-File-to-Import", "note": "If you would rather draft in Word and import. Talk to OME first." }
+      ]
+    }
+  ]
+}
