@@ -249,6 +249,7 @@ li:last-child { margin-bottom: 0; }
 }
 .site-header__inner {
   display: flex;
+  justify-content: space-between;
   align-items: baseline;
   gap: var(--sp-4);
   max-width: 54rem;
@@ -265,24 +266,44 @@ li:last-child { margin-bottom: 0; }
   letter-spacing: 0.02em;
 }
 
-/* --- Progress bar ------------------------------------------------------- */
-.site-header__progress-count {
+/* --- Progress card ------------------------------------------------------ */
+.progress-card {
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.progress-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--sp-2);
+}
+.progress-card__label {
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--c-text-faint);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  margin-left: auto;
 }
-.progress-bar {
-  height: 3px;
-  background: rgba(2, 71, 49, 0.06);
-  margin-top: -1px;
+.progress-card__count {
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--c-brand);
 }
-.progress-bar__fill {
+.progress-card__track {
+  height: 4px;
+  background: rgba(2, 71, 49, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-card__fill {
   height: 100%;
   background: linear-gradient(90deg, var(--c-brand) 0%, var(--c-accent) 100%);
-  border-radius: 0 2px 2px 0;
+  border-radius: 2px;
   transition: width .3s ease;
 }
 

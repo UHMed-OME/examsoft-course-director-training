@@ -230,19 +230,24 @@ ${body}
 </body>
 </html>`;
 
-const header = (site, pageSeq, currentId) => {
-  const idx = pageSeq ? pageSeq.findIndex(p => p.id === currentId) : -1;
-  const pct = idx >= 0 ? Math.round(((idx + 1) / pageSeq.length) * 100) : 0;
-  const counter = pageSeq ? `<span class="site-header__progress-count">${idx + 1} / ${pageSeq.length}</span>` : "";
-  const progressBar = pageSeq ? `<div class="progress-bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Course progress: ${pct}%"><div class="progress-bar__fill" style="width:${pct}%"></div></div>` : "";
-  return `<header class="site-header">
+const header = (site) => `<header class="site-header">
   <div class="site-header__inner">
     <span class="site-header__title">${esc(site.title)}</span>
     <span class="site-header__org">${esc(site.institutionShort)} ${esc(site.office)}</span>
-    ${counter}
   </div>
-  ${progressBar}
 </header>`;
+
+const progressCard = (pageSeq, currentId) => {
+  const idx = pageSeq.findIndex(p => p.id === currentId);
+  if (idx < 0) return "";
+  const pct = Math.round(((idx + 1) / pageSeq.length) * 100);
+  return `<div class="progress-card" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Course progress">
+  <div class="progress-card__top">
+    <span class="progress-card__label">Your progress</span>
+    <span class="progress-card__count">${idx + 1} of ${pageSeq.length}</span>
+  </div>
+  <div class="progress-card__track"><div class="progress-card__fill" style="width:${pct}%"></div></div>
+</div>`;
 };
 
 const footer = (site) => `<footer class="footer">
@@ -259,8 +264,9 @@ const renderHome = (site, home, videoItems, sections, pageSeq) => {
   const ctx = { site, sections };
   const body = `
 ${sidebar("home", videoItems, sections)}
-${header(site, pageSeq, "home")}
+${header(site)}
 <div class="page">
+  ${progressCard(pageSeq, "home")}
   <main id="main">
     ${home.supertitle ? `<p class="page__supertitle">${esc(home.supertitle)}</p>` : ""}
     <h1>${esc(home.title)}</h1>
@@ -301,8 +307,9 @@ const renderVideoPage = (site, vid, videoItems, sections, pageSeq) => {
   }
   const body = `
 ${sidebar(`video-${vid.slug}`, videoItems, sections)}
-${header(site, pageSeq, `video-${vid.slug}`)}
+${header(site)}
 <div class="page">
+  ${progressCard(pageSeq, `video-${vid.slug}`)}
   <main id="main">
     <h1>${esc(vid.title)}</h1>
     ${vid.lede ? `<p class="page__lede">${inline(vid.lede)}</p>` : ""}
@@ -322,8 +329,9 @@ const renderSectionPage = (site, section, videoItems, sections, pageSeq) => {
   const ctx = { site, sections };
   const body = `
 ${sidebar(section.id, videoItems, sections)}
-${header(site, pageSeq, section.id)}
+${header(site)}
 <div class="page">
+  ${progressCard(pageSeq, section.id)}
   <main id="main">
     <h1>${esc(section.title)}</h1>
     ${section.blocks.map(b => renderBlock(b, ctx)).join("\n")}
@@ -340,8 +348,9 @@ const renderFaq = (site, faq, videoItems, sections, pageSeq) => {
   BASE = "../";
   const body = `
 ${sidebar("faq", videoItems, sections)}
-${header(site, pageSeq, "faq")}
+${header(site)}
 <div class="page">
+  ${progressCard(pageSeq, "faq")}
   <main id="main">
     <h1>${esc(faq.title)}</h1>
     <div class="faq-list">
