@@ -1,11 +1,11 @@
 ---
 name: examsoft-import
-description: Generate an ExamSoft-compatible tab-delimited import file (.txt) from questions provided by the user. Supports Multiple Choice, True/False, and Essay with HTML formatting, categories, folders, rationale, and partial credit for multiple-answer questions.
+description: Generate an ExamSoft-compatible RTF import file from questions provided by the user. Supports all question types — Multiple Choice, Multiple Answer, True/False, Essay, Fill in the Blank (text box, numeric range, dropdown), Drag and Drop, Ordering, and Matrix — with folders, categories, rationale, and answer comments.
 ---
 
 # ExamSoft Question Import Generator
 
-Generate a tab-delimited .txt file that imports directly into ExamSoft's Legacy Portal via **Questions > Import Questions > Tab Delimited Import**.
+Generate an RTF file that imports directly into ExamSoft's Legacy Portal via **Questions > Import Questions > RTF Import**.
 
 ## When to use
 
@@ -17,7 +17,7 @@ The user wants to:
 
 ## Before you start
 
-Read `references/tab-delimited-schema.md` for the exact column spec, field rules, and HTML tag support.
+Read `references/rtf-import-schema.md` for the full format spec, type codes, and examples of every question type.
 
 ## Interaction
 
@@ -29,90 +29,132 @@ Read `references/tab-delimited-schema.md` for the exact column spec, field rules
 
 2. **Clarify only what you cannot infer.** Ask at most one round of questions, covering only the gaps:
    - **Folder** — where in the item bank? Default: leave blank (root).
-   - **Categories** — any ExamSoft categories to tag? Default: none (ExamSoft auto-adds an IMPORTS category).
-   - **Status** — DRAFT or APPROVED? Default: DRAFT (safer; they can bulk-approve later).
+   - **Categories** — any ExamSoft categories to tag? Default: none.
+   - **Question types** — if the source material doesn't make the type obvious, ask. Default: MC single answer.
    - If the user provides enough context (e.g., "for the Cardiology exam"), skip asking and use reasonable defaults.
 
-3. **Generate the file.** Write a `.txt` file to the working directory (or the user's preferred location). Name it descriptively, e.g., `cardiology-midterm-import.txt`.
+3. **Generate the file.** Write an `.rtf` file to the working directory (or the user's preferred location). Name it descriptively, e.g., `cardiology-midterm-import.rtf`.
 
 ## Output format rules
 
 Follow these exactly — a malformed file will fail on import or silently drop data.
 
-### Structure
-- **Row 1**: Header row with all 21 column names, tab-separated.
-- **Row 2+**: One question per row, tab-separated.
-- All 21 columns must be present in every row, even if blank. Never skip a column.
-- Use literal tab characters (`\t`) between fields. No extra whitespace.
-- No quoting of fields unless the field itself contains a tab (which it should not).
-- File encoding: UTF-8 without BOM.
+### RTF wrapper
 
-### Header row (copy exactly)
+Every generated file must be a valid RTF document. Use this minimal wrapper:
+
 ```
-Folders	Descrip	Q Type	Question Text	M/C Ans Choice A	M/C Ans Choice B	M/C Ans Choice C	M/C Ans Choice D	M/C Ans Choice E	F	G	H	I	J	Answer Key	Partial Credit	Rationale	Category	Item Groups	Randomize Choices	Status
+{\rtf1\ansi\deff0{\fonttbl{\f0\fswiss Arial;}}
+\f0\fs20
+[ALL QUESTIONS HERE]
+}
 ```
+
+Within the wrapper, each question is plain text using ExamSoft's marker syntax. Questions are separated by a blank line (`\par\par`). Line breaks within a question use `\par`.
+
+### Character escaping
+
+These characters MUST be escaped in the RTF content:
+- `\` → `\\`
+- `{` → `\{`
+- `}` → `\}`
+
+Smart quotes (if present in source material):
+- Left double quote → `\'93`
+- Right double quote → `\'94`
+- Left single quote / apostrophe → `\'92`
+
+### Text formatting
+
+RTF supports inline formatting:
+- Bold: `{\b bold text}`
+- Italic: `{\i italic text}`
+- Underline: `{\ul underline text}`
+
+Use formatting sparingly — bold for key terms, underline for negative stems (NOT, EXCEPT).
+
+### Question block structure
+
+Each question block follows this pattern:
+
+```
+[Type: CODE ][Folder: path ][Title: name ][Category: tags ]NUMBER. QUESTION STEM\par
+[~ RATIONALE\par]
+[*]a. answer choice A\par
+[@answer comment\par]
+[*]b. answer choice B\par
+...
+```
+
+**Order matters:**
+1. Optional metadata line: Type, Folder, Title, Category (all on the same line, before the question number)
+2. Question number + stem (on the same line as the metadata, or on its own line if no metadata)
+3. Rationale (optional, starts with `~`)
+4. Answer choices (letters followed by period or parenthesis)
+5. Answer comments (optional, start with `@`, placed after the answer they apply to)
 
 ### Question types
 
-**Multiple Choice (single answer)**
-- Q Type: `MC`
-- Fill answer choices A through E (or more, up to J). Leave unused choice columns blank.
-- Answer Key: single letter, e.g., `C`
-- Partial Credit: blank
-- Set Randomize Choices to `Yes` unless order matters (e.g., "All of the above" is a choice)
+**Multiple Choice — Single Answer** (most common, no Type code needed)
+- Correct answer marked with `*` before the letter
+- Up to 26 answer choices (a through z)
 
-**Multiple Choice (multiple answer / select all that apply)**
-- Q Type: `MC` (same as single answer — ExamSoft distinguishes by the answer key)
-- Answer Key: comma-separated letters, e.g., `A,C,D`
-- Partial Credit: `P`
-- Add "(Select all that apply)" or similar to the question stem so exam takers know
+**Multiple Choice — Multiple Answer**
+- `Type: MA` before the question number
+- Mark EACH correct answer with `*`
+- Add "Select all that apply" to the stem
 
-**True/False**
-- Q Type: `TF`
-- Choice A: `TRUE` (always first)
-- Choice B: `FALSE` (always second)
-- Answer Key: `A` (true) or `B` (false)
-- Leave choices C through J blank
+**True/False** (no Type code needed)
+- TRUE must be choice A, FALSE must be choice B
+- Use `T`/`F` or `TRUE`/`FALSE`
+- Mark correct answer with `*`
 
 **Essay**
-- Q Type: `E`
-- Leave all answer choice columns blank
-- Leave Answer Key and Partial Credit blank
-- Status defaults to DRAFT (essays cannot be auto-scored)
+- `Type: E` before the question number
+- No answer choices
 
-### HTML formatting
+**Fill in the Blank**
+- `Type: F` before the question number
+- Stem must contain blank indicators: `_____` (5 underscores), `__1__`, `[1]`, or `[a]`
+- Three answer formats:
+  - **Text box**: `a. answer` (pipe `|` separates alternate accepted answers)
+  - **Numeric range**: `a. Range: MIN_MAX`
+  - **Dropdown**: `a. Choice of: opt1 | opt2 | opt3 | CORRECT_NUMBER`
 
-Always generate HTML-tagged content. The user will check "Import with HTML tags" on the ExamSoft import page.
+**Drag and Drop**
+- `Type: DD` before the question number
+- Mark correct answers with `*`
+- Optional `Title1: Label` and `Title2: Label` for box headers
 
-Use HTML for:
-- **Bold**: `<b>key terms</b>` for emphasis in stems
-- **Italic**: `<i>supplementary context</i>`
-- **Underline**: `<u>critical negatives</u>` (e.g., "Which is <u>NOT</u> a symptom")
-- **Line breaks**: `<br>` within a cell (never a literal newline — that breaks the TSV)
-- **Superscript/subscript**: `<sup>2+</sup>`, `<sub>2</sub>` for chemistry/physics notation
-- **Lists**: `<ul><li>...</li></ul>` when a stem presents a clinical scenario with multiple findings
+**Ordering**
+- `Type: ORDERING` before the question number
+- Each choice followed by `---` and its correct position number
 
-Do NOT use:
-- Literal newlines within any field (breaks the row). Use `<br>` instead.
-- Quotation marks wrapping a field (ExamSoft strips them).
-- Images (not supported in tab-delimited import).
+**Matrix**
+- `Type: MTX` before the question number
+- Optional `Title-Prompt: Label` for the prompt column header
+- Rows use uppercase letters with `---` and correct column numbers
+- Columns listed below with `N.-` prefix
 
-### Categories
+### Folder and category rules
 
-- Separate multiple categories with commas: `Cardiology,Pharmacology`
-- Sub-categories use a colon: `Cardiology:Arrhythmias`
-- Categories must already exist in ExamSoft or they are ignored. Advise the user to verify.
+**Folders:**
+- Path separator: `/` (e.g., `Folder: Block 2/Cardiology`)
+- Auto-created if they don't exist
+- Do NOT include the root "ITEMS" folder
 
-### Folders
-
-- Path separator is `/`: `Block 1/Cardiology`
-- Omit the root "ITEMS" folder name.
-- If the folder doesn't exist, ExamSoft creates it.
+**Categories:**
+- Separator between multiple categories: `,`
+- Sub-category separator: `/` (e.g., `Category: Cardiology/Arrhythmias,Pharmacology`)
+- Categories must already exist in ExamSoft — they are NOT auto-created
+- Advise the user to verify category names match ExamSoft exactly
 
 ### Rationale
 
-- Include a brief explanation for the correct answer. This helps course directors and can be released to students post-exam.
-- Keep it concise: 1-3 sentences covering why the correct answer is right and, if helpful, why the most common wrong answer is wrong.
+- Start with `~` followed by a space
+- Place after the stem, before answer choices
+- Can be released to students post-exam via SofTest/Score
+- Keep concise: 1-3 sentences
 
 ## Quality guidelines for generated questions
 
@@ -121,7 +163,7 @@ When generating questions (not just converting user-provided ones):
 - Write stems as clinical vignettes when possible (patient age, sex, presentation, relevant history, then ask).
 - Avoid "All of the above" and "None of the above" — they reduce item discrimination.
 - Make distractors plausible and homogeneous in length and style.
-- Avoid negative stems ("Which is NOT...") when possible; if unavoidable, bold/underline the negative word.
+- Avoid negative stems ("Which is NOT...") when possible; if unavoidable, underline the negative word using `{\ul NOT}`.
 - Each question should test one concept.
 - Avoid absolute terms ("always", "never") in stems and distractors.
 - Rationale should explain the correct answer and address the most tempting distractor.
@@ -130,14 +172,16 @@ When generating questions (not just converting user-provided ones):
 
 Tell the user:
 1. Open ExamSoft > Questions > Import Questions
-2. In the **Tab Delimited Import** panel, click "Select Folder" to choose where questions land (or leave blank for root)
-3. Drag the .txt file or click to browse
-4. **Check "Import with HTML tags"** (important — the file uses HTML formatting)
-5. Consider checking "Import all questions as draft" if they want to review before approving
+2. In the **RTF Import** panel, click "Select Folder" to choose where questions land
+3. Drag the `.rtf` file or click to browse
+4. Optionally check "Import with HTML tags" if the file contains HTML (this skill uses RTF formatting instead, so this is usually unchecked)
+5. Consider checking "Import all questions as draft" to review before approving
 6. Click Next and verify the preview
 
 ## Limitations to mention
 
-- Tab-delimited import supports MC, TF, and Essay only. For Fill in the Blank, Drag & Drop, Ordering, or Matrix questions, use the RTF import instead.
-- Images cannot be imported via either format. Add them in ExamSoft after import.
-- Categories in the file must match existing ExamSoft categories exactly (name and path). Folders are auto-created if they don't exist.
+- Images cannot be imported. Add them in ExamSoft after import.
+- Text formatting (bold, italic) may not be retained for all question types — verify after import.
+- Categories must exist in ExamSoft before import. Folders are auto-created.
+- Supported fonts: Arial, Arial Black, Calibri, Comic Sans, Courier New, Georgia, Impact, Times New Roman, Trebuchet MS, Verdana.
+- Supported sizes: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 16pt, 20pt, 22pt, 24pt, 26pt, 28pt, 36pt, 48pt, 72pt.
