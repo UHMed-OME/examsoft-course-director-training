@@ -1,26 +1,37 @@
 {
   "id": "exam-day",
-  "navLabel": "Exam day",
-  "title": "Exam day and after",
+  "navLabel": "After the exam",
+  "title": "After the exam",
   "blocks": [
-    {
-      "type": "p",
-      "text": "Students sit the exam in Examplify on iPad. Once the exam starts, the app locks the device. Screenshots, copy-paste, and internet access all stop until the exam ends."
-    },
-    { "type": "h3", "text": "After the exam" },
     {
       "type": "p",
       "text": "Results appear in the assessment overview within minutes of students uploading their answer files."
     },
     {
+      "type": "todo",
+      "text": "Verify 'results appear within minutes of upload'."
+    },
+    {
       "type": "steps",
       "items": [
-        { "t": "Assessment overview", "d": "Distribution and overall performance." },
-        { "t": "Item analysis", "d": "Find questions the class missed or where distractors did not work. Candidates for scoring adjustments or retirement." },
-        { "t": "Category performance", "d": "Performance by topic across the cohort." }
+        {
+          "t": "Assessment overview",
+          "d": "Distribution and overall performance."
+        },
+        {
+          "t": "Item analysis",
+          "d": "Find questions the class missed or where distractors did not work. Candidates for scoring adjustments or retirement."
+        },
+        {
+          "t": "Category performance",
+          "d": "Performance by topic across the cohort."
+        }
       ]
     },
-    { "type": "h3", "text": "Adjusting scores" },
+    {
+      "type": "h3",
+      "text": "Adjusting scores"
+    },
     {
       "type": "p",
       "text": "After reviewing item analysis, you may need to adjust scoring on individual questions. Common adjustments include granting full credit on a flawed question or accepting an additional correct answer."
@@ -31,10 +42,17 @@
       "title": "Coordinate scoring changes with OME",
       "text": "Email OME before making adjustments so your changes and any adjustments OME has queued do not conflict."
     },
-    { "type": "h3", "text": "Releasing results to students" },
+    {
+      "type": "h3",
+      "text": "Releasing results to students"
+    },
     {
       "type": "p",
       "text": "Once scoring adjustments are final, OME releases the results. Students receive an email notification and can view their score in the Examplify app or the student portal."
+    },
+    {
+      "type": "todo",
+      "text": "Verify 'students receive an email notification and can view their score in the Examplify app or the student portal'. The audit could not find it in the source docs."
     },
     {
       "type": "callout",
@@ -46,8 +64,14 @@
       "type": "links",
       "title": "Vendor reference",
       "items": [
-        { "label": "Legacy Portal: Review Results and Adjust Scoring", "url": "https://support.examsoft.com/hc/en-us/articles/11166583729677-Legacy-Portal-Review-Assessment-Results-and-Adjust-Scoring" },
-        { "label": "Legacy Portal: Reporting Overview", "url": "https://support.examsoft.com/hc/en-us/articles/11166769249165-Legacy-Portal-Reporting-Overview" }
+        {
+          "label": "Legacy Portal: Review Results and Adjust Scoring",
+          "url": "https://support.examsoft.com/hc/en-us/articles/11166583729677-Legacy-Portal-Review-Assessment-Results-and-Adjust-Scoring"
+        },
+        {
+          "label": "Legacy Portal: Reporting Overview",
+          "url": "https://support.examsoft.com/hc/en-us/articles/11166769249165-Legacy-Portal-Reporting-Overview"
+        }
       ]
     }
   ]

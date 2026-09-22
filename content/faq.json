@@ -35,6 +35,10 @@
       "a": "OME posts it. Do not post your own exam unless OME has asked you to."
     },
     {
+      "q": "Can students highlight text during the exam?",
+      "a": "Yes. Examplify lets students highlight and strike through text. It is on by default, and JABSOM leaves it on."
+    },
+    {
       "q": "What should Max Downloads be set to?",
       "a": "Always 1. Standing JABSOM rule."
     },

@@ -19,28 +19,82 @@
       "title": "Apply tags, but leave the tree alone",
       "text": "The category tree is shared across all courses and about nine years of data. Renaming or moving a node changes what past reports mean. If your course needs a new category, ask OME to add it."
     },
-    { "type": "h3", "text": "Question types" },
+    {
+      "type": "h3",
+      "text": "Question types"
+    },
     {
       "type": "table",
-      "cols": ["Type", "OME stance", "Notes"],
+      "cols": [
+        "Type",
+        "OME stance",
+        "Notes"
+      ],
       "rows": [
-        ["Multiple Choice", "Preferred", "Handles one or several correct answers."],
-        ["True / False", "Fine", "Discriminates poorly. Use sparingly."],
-        ["Fill in the Blank", "Not preferable", "Spelling is scored. Produces more disputes."],
-        ["Matching", "Not preferable", "Produces more post-exam adjustments."],
-        ["Hot Spot", "Good for images", "Rectangle or polygon. Student drops a pin."],
-        ["Drag and Drop", "Good, with care", "Does not score sequence. Partial credit subtracts."]
+        [
+          "Multiple Choice",
+          "Preferred",
+          "Handles one or several correct answers."
+        ],
+        [
+          "True / False",
+          "Fine",
+          "Discriminates poorly. Use sparingly."
+        ],
+        [
+          "Fill in the Blank",
+          "Avoid",
+          "Spelling is scored. Produces more disputes."
+        ],
+        [
+          "Matching",
+          "Avoid",
+          "Produces more post-exam adjustments."
+        ],
+        [
+          "Hot Spot",
+          "Good for images",
+          "Rectangle or polygon. Student drops a pin."
+        ],
+        [
+          "Drag and Drop",
+          "Good, with care",
+          "Does not score sequence. +/- Partial Credit subtracts."
+        ]
       ]
     },
-    { "type": "h3", "text": "Embedding vs. attaching images" },
+    {
+      "type": "h3",
+      "text": "Embedding vs. attaching images"
+    },
     {
       "type": "table",
-      "cols": ["", "Embedded image", "Attached image"],
+      "cols": [
+        "",
+        "Embedded image",
+        "Attached image"
+      ],
       "rows": [
-        ["Where it appears", "Inline in the question or answer choice", "Pop-up the student opens from a paperclip icon"],
-        ["Prints on hard copy?", "Yes", "No"],
-        ["How to add", "Click the image icon in the question editor", "Use the Attachments panel below the question"],
-        ["File limits", "GIF, JPG, PNG. 3 MB, 1920 x 1080 max", "Same formats plus PDF, RTF, audio, video"]
+        [
+          "Where it appears",
+          "Inline in the question or answer choice",
+          "Pop-up the student opens from a paperclip icon"
+        ],
+        [
+          "Prints on hard copy?",
+          "Yes",
+          "No"
+        ],
+        [
+          "How to add",
+          "Click the image icon in the question editor",
+          "Use the Attachments panel below the question"
+        ],
+        [
+          "File limits",
+          "GIF, JPG, PNG. 3 MB, 1920 x 1080 max",
+          "Same formats plus PDF, RTF, audio, video"
+        ]
       ]
     },
     {
@@ -49,7 +103,10 @@
       "title": "Embed images you need on the printed backup",
       "text": "OME prints two hard copies of every exam. Attached images do not appear on the printout. If students need to see the image to answer the question, embed it."
     },
-    { "type": "h3", "text": "Question groups (vignettes)" },
+    {
+      "type": "h3",
+      "text": "Question groups (vignettes)"
+    },
     {
       "type": "p",
       "text": "A group keeps related questions together when the assessment is randomized. Use it for clinical scenarios where several questions reference the same stem."
@@ -64,18 +121,24 @@
     },
     {
       "type": "callout",
-      "tone": "warn",
-      "title": "Verify group order before posting",
+      "tone": "note",
+      "title": "Check group order before handoff",
       "text": "Grouped questions appear in the order they are listed on the assessment. Confirm the sequence is correct before handing off to OME."
     },
-    { "type": "h3", "text": "Fill in the Blank" },
+    {
+      "type": "h3",
+      "text": "Fill in the Blank and Matching"
+    },
     {
       "type": "callout",
       "tone": "jabsom",
       "title": "One blank per question",
       "text": "For accurate scoring and reporting, limit Fill in the Blank and Matching questions to a single blank or match per question."
     },
-    { "type": "h3", "text": "Hot Spot" },
+    {
+      "type": "h3",
+      "text": "Hot Spot"
+    },
     {
       "type": "ul",
       "items": [
@@ -91,18 +154,21 @@
       "caption": "Hot Spot in Examplify preview. The blue pin is what the student places.",
       "source": "OME, 2023"
     },
-    { "type": "h3", "text": "Drag and Drop" },
+    {
+      "type": "h3",
+      "text": "Drag and Drop"
+    },
     {
       "type": "callout",
-      "tone": "critical",
+      "tone": "warn",
       "title": "Drag and Drop does not score sequence",
       "text": "Order makes no difference to the score. If you need sequence scored, use Ordering instead."
     },
     {
       "type": "callout",
       "tone": "warn",
-      "title": "Partial credit subtracts points",
-      "text": "Students gain points for correct answers dragged in and lose the same for wrong ones (floor is 0). Warn them in the stem."
+      "title": "+/- Partial Credit subtracts points",
+      "text": "With +/- Partial Credit, students gain points for correct answers dragged in and lose the same for wrong ones (floor is 0). Plain Partial Credit does not subtract. If you use +/-, say so in the stem."
     },
     {
       "type": "figurepair",
@@ -125,8 +191,14 @@
       "type": "links",
       "title": "Vendor reference",
       "items": [
-        { "label": "Legacy Portal: Create and Edit Questions", "url": "https://support.examsoft.com/hc/en-us/articles/11166014769165-Legacy-Portal-Basic-Steps-to-Create-and-Edit-Questions" },
-        { "label": "Legacy Portal: Assign Categories", "url": "https://support.examsoft.com/hc/en-us/articles/11147551863437-Legacy-Portal-Assign-Categories-to-Questions" }
+        {
+          "label": "Legacy Portal: Create and Edit Questions",
+          "url": "https://support.examsoft.com/hc/en-us/articles/11166014769165-Legacy-Portal-Basic-Steps-to-Create-and-Edit-Questions"
+        },
+        {
+          "label": "Legacy Portal: Assign Categories",
+          "url": "https://support.examsoft.com/hc/en-us/articles/11147551863437-Legacy-Portal-Assign-Categories-to-Questions"
+        }
       ]
     }
   ]

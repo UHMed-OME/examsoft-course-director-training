@@ -10,7 +10,7 @@
       "items": [
         {
           "t": "Sign in to the portal",
-          "d": "Go to [www.examsoft.com/hawaiimed](https://www.examsoft.com/hawaiimed). Use the **Administrators / Faculty** login at the bottom of the page, not the student login at the top.",
+          "d": "Go to [www.examsoft.com/hawaiimed](https://www.examsoft.com/hawaiimed). In the **Administrators / Faculty** box at the bottom of the page, click **Login**. The Exam Takers box at the top is for students.",
           "fig": {
             "src": "images/examsoft-login-annotated.png",
             "alt": "ExamSoft login page showing two sections: Exam Takers at the top for students, Administrators / Faculty at the bottom for course directors.",
@@ -27,10 +27,14 @@
           }
         },
         {
-          "t": "Open last year's exam",
-          "d": "Find your course's most recent assessment and open it. You will build this year's version from it."
+          "t": "Duplicate last year's exam",
+          "d": "Open the Assessments menu, find your course's most recent assessment, and duplicate it. Name the copy with this academic year. [Building and handing off](docs/assessments/) has the full working order."
         }
       ]
+    },
+    {
+      "type": "todo",
+      "text": "Confirm sign-in is UH single sign-on through the Login button, not 'Login using your Examsoft Id'. Step 1 here and the Your account page both assume Login + SSO."
     },
     {
       "type": "callout",
@@ -38,7 +42,12 @@
       "title": "Your draft is due 7 business days before the exam",
       "text": "OME needs the full seven days to proof the assessment, preview it on an iPad, print backup copies, and build proctor materials."
     },
-    { "type": "h3", "text": "Contacts" },
-    { "type": "contacts" }
+    {
+      "type": "h3",
+      "text": "Contacts"
+    },
+    {
+      "type": "contacts"
+    }
   ]
 }

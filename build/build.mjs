@@ -7,6 +7,8 @@ import { dirname, join } from "node:path";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT = join(ROOT, "content");
 let BASE = "";
+let PAGE = "";
+const TODOS = [];
 
 const esc = (v) => String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 
@@ -83,9 +85,7 @@ const renderers = {
       <p>${inline(b.text)}</p></aside>`;
   },
 
-  todo: (b) => `<aside class="callout callout--todo">
-    <span class="callout__label">To do, maintainer</span>
-    <p>${inline(b.text)}</p></aside>`,
+  todo: (b) => { TODOS.push(`${PAGE}: ${b.text}`); return ""; },
 
   table: (b) => `<div class="table-wrap"><table>
     ${b.caption ? `<caption>${inline(b.caption)}</caption>` : ""}
@@ -193,7 +193,7 @@ const sidebar = (active, videoItems, sections) => {
 <nav class="sidebar" id="sidebar" aria-label="Site">
   <a class="sidebar__brand" href="${asset("")}"><img class="sidebar__logo" src="${asset("assets/jabsom-logo-white.png")}" alt="JABSOM"><span class="sidebar__brand-text">Office of Medical Education</span></a>
   <ul class="sidebar__links">
-    ${link("home", "Quick start", "")}
+    ${link("home", "Getting started", "")}
     <li class="sidebar__heading">Videos</li>
 ${videoLinks}
     <li class="sidebar__heading">Reference</li>
@@ -247,7 +247,7 @@ const progressCard = (pageSeq, currentId) => {
   return `<div class="progress-card" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Course progress">
   <div class="progress-card__top">
     <span class="progress-card__label">Your progress</span>
-    <span class="progress-card__count">${idx + 1} of ${pageSeq.length}</span>
+    <span class="progress-card__count">${idx + 1} of ${pageSeq.length} &middot; about __MINUTES__ min</span>
   </div>
   <div class="progress-card__track"><div class="progress-card__fill" style="width:${pct}%"></div></div>
 </div>`;
@@ -370,6 +370,12 @@ ${footer(site)}`;
   return shell({ title: `FAQ — ${site.institutionShort}`, description: "Common questions about ExamSoft at JABSOM.", body });
 };
 
+const withMinutes = (html, extra = 0) => {
+  const main = (html.match(/<main[^>]*>([\s\S]*?)<\/main>/) || ["", ""])[1];
+  const words = main.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  return html.replace("__MINUTES__", String(Math.max(1, Math.round(words / 200 + extra))));
+};
+
 /* --- Run ---------------------------------------------------------------- */
 
 const readJson = async (p) => JSON.parse(await readFile(p, "utf8"));
@@ -391,41 +397,54 @@ const main = async () => {
     sections.push(s);
   }
 
-  const videoItems = videos.items || [];
+  const videoItems = (videos.items || []).filter(v => !v.hidden);
 
-  const pageSeq = [
-    { id: "home", label: "Quick start", href: "" },
-    ...videoItems.map(v => ({ id: `video-${v.slug}`, label: v.navLabel || v.title, href: `videos/${v.slug}/` })),
-    ...sections.map(s => ({ id: s.id, label: s.navLabel || s.title, href: `docs/${s.id}/` })),
-    { id: "faq", label: "FAQ", href: "faq/" },
-  ];
+  const pages = new Map([
+    ["home", { id: "home", label: "Getting started", href: "" }],
+    ...videoItems.map(v => [`video-${v.slug}`, { id: `video-${v.slug}`, label: v.navLabel || v.title, href: `videos/${v.slug}/` }]),
+    ...sections.map(s => [s.id, { id: s.id, label: s.navLabel || s.title, href: `docs/${s.id}/` }]),
+    ["faq", { id: "faq", label: "FAQ", href: "faq/" }],
+  ]);
+  if (!Array.isArray(site.path)) throw new Error('site.json needs a "path" array of page ids.');
+  const pageSeq = site.path.map(id => {
+    if (!pages.has(id)) throw new Error(`site.json path lists unknown page "${id}".`);
+    return pages.get(id);
+  });
+  for (const id of pages.keys()) if (!site.path.includes(id)) console.warn(`Warning: page "${id}" is not in site.json path.`);
 
-  const homeHtml = renderHome(site, home, videoItems, sections, pageSeq);
+  for (const t of site.maintainerTodos || []) TODOS.push(`site: ${t}`);
+
+  PAGE = "home";
+  const homeHtml = withMinutes(renderHome(site, home, videoItems, sections, pageSeq));
   await writeFile(join(ROOT, "index.html"), homeHtml, "utf8");
 
   for (const v of videoItems) {
     const outDir = join(ROOT, "videos", v.slug);
     await mkdir(outDir, { recursive: true });
-    const html = renderVideoPage(site, v, videoItems, sections, pageSeq);
+    PAGE = `video-${v.slug}`;
+    const html = withMinutes(renderVideoPage(site, v, videoItems, sections, pageSeq), v.minutes || 0);
     await writeFile(join(outDir, "index.html"), html, "utf8");
     console.log(`Built videos/${v.slug}/index.html — ${html.length} bytes`);
   }
 
   for (const s of sections) {
-    const html = renderSectionPage(site, s, videoItems, sections, pageSeq);
+    PAGE = s.id;
+    const html = withMinutes(renderSectionPage(site, s, videoItems, sections, pageSeq));
     const outDir = join(ROOT, "docs", s.id);
     await mkdir(outDir, { recursive: true });
     await writeFile(join(outDir, "index.html"), html, "utf8");
     console.log(`Built docs/${s.id}/index.html — ${html.length} bytes`);
   }
 
-  const faqHtml = renderFaq(site, faq, videoItems, sections, pageSeq);
+  PAGE = "faq";
+  const faqHtml = withMinutes(renderFaq(site, faq, videoItems, sections, pageSeq));
   await mkdir(join(ROOT, "faq"), { recursive: true });
   await writeFile(join(ROOT, "faq", "index.html"), faqHtml, "utf8");
 
   console.log(`Built index.html         — home, ${homeHtml.length} bytes`);
   console.log(`Built ${videoItems.length} video pages`);
   console.log(`Built faq/index.html     — ${faq.items.length} questions, ${faqHtml.length} bytes`);
+  if (TODOS.length) console.log(`\nMaintainer TODOs (not shown on the site):\n${TODOS.map(t => `  - ${t}`).join("\n")}`);
 };
 
 main().catch(e => { console.error(`\nBuild failed: ${e.message}\n`); process.exit(1); });

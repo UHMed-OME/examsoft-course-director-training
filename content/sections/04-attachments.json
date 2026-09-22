@@ -9,19 +9,39 @@
     },
     {
       "type": "callout",
-      "tone": "critical",
+      "tone": "warn",
       "title": "200 MB total per assessment",
       "text": "That ceiling covers every attachment and inline image in the assessment combined."
     },
     {
       "type": "table",
       "caption": "Per-file limits",
-      "cols": ["Type", "Formats", "Max size"],
+      "cols": [
+        "Type",
+        "Formats",
+        "Max size"
+      ],
       "rows": [
-        ["Images", "GIF, JPG, PNG", "3 MB (max 1920 x 1080)"],
-        ["Audio", "MP3, MP4", "15 MB"],
-        ["Video", "MP4, AVI, MOV", "150 MB"],
-        ["PDF", "PDF", "20 MB"]
+        [
+          "Images",
+          "GIF, JPG, PNG",
+          "3 MB (max 1920 x 1080)"
+        ],
+        [
+          "Audio",
+          "MP3, MP4",
+          "15 MB"
+        ],
+        [
+          "Video",
+          "MP4, AVI, MOV",
+          "150 MB"
+        ],
+        [
+          "PDF",
+          "PDF",
+          "20 MB"
+        ]
       ]
     },
     {
@@ -32,7 +52,10 @@
       "type": "links",
       "title": "Vendor reference",
       "items": [
-        { "label": "Attachment Types and Requirements", "url": "https://support.examsoft.com/hc/en-us/articles/11168028043021-Attachment-Types-and-Requirements" }
+        {
+          "label": "Attachment Types and Requirements",
+          "url": "https://support.examsoft.com/hc/en-us/articles/11168028043021-Attachment-Types-and-Requirements"
+        }
       ]
     }
   ]

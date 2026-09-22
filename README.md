@@ -10,14 +10,15 @@ maintained since 2014.
 
 - **Audience:** a physician who is an expert clinician and a complete novice in
   ExamSoft.
-- **Output:** two pages. `index.html` is the onboarding path, short and
-  task-focused, aimed at a course director's first week. `docs/index.html` is
-  the full reference. No framework, no runtime dependencies, no build server.
+- **Output:** a short linear course. `index.html` is Getting started, then
+  one page per reference topic (`docs/<id>/`), one per video (`videos/<slug>/`),
+  and the FAQ. Previous/Next buttons and a progress card walk the reader through
+  the order set in `site.json` `path`. No framework, no runtime dependencies.
 - **Deploys to:** GitHub Pages under the `UHMed-OME` organization.
 
-The split is deliberate. Onboarding and reference have different jobs: one
-gets somebody productive in a week, the other answers a question in six
-months. Keeping them on one page made both worse.
+Every page must pass one test: does a course director need this to get their
+exam built and handed off? Background, edge cases, and what-ifs go in the FAQ.
+Maintainer notes go in `todo` blocks, which never render on the site.
 
 ---
 
@@ -43,15 +44,17 @@ dependencies on purpose, so it will still run in five years.
 
 ```
 content/
-  site.json               Title, portal facts, contacts, version, review date
-  home.json               The onboarding page
+  site.json               Title, contacts, version, the page `path`, maintainer TODOs
+  home.json               Getting started
+  videos.json             One entry per video page (`hidden: true` keeps it out)
+  faq.json                FAQ accordion
   sections/
-    02-account-and-login.json   One file per docs section, in filename order
-    03-preferences.json
+    01-timeline.json      One file per reference page; filename order sets the sidebar
+    02-your-account.json
     ...
 build/
-  build.mjs               Renders index.html and docs/index.html from content/
-  build_deck.py           Renders the slide deck from the same content/
+  build.mjs               Renders every page from content/ and prints the TODO list
+  build_deck.py           Slide deck. Out of date: still expects the old section ids
   check-links.mjs         Reports vendor link rot
 assets/
   css/tokens.css          ALL color, type, spacing values. The design swap point
@@ -59,12 +62,13 @@ assets/
   css/print.css           Print / PDF rules
   js/site.js              Theme toggle, mobile nav, active-section highlight
 images/                   Screenshots extracted from the source documents
-index.html                Generated onboarding page. Committed for Pages
-docs/index.html           Generated reference. Committed for Pages
+index.html, docs/, videos/, faq/   Generated pages. Committed for Pages
 ```
 
-Section files start at `02` because section 01 used to be "Start here" and
-became the home page. Filenames only control order, so the gap is harmless.
+Two things set order. Filename order sets the sidebar's Reference list.
+`site.json` `path` sets the Previous/Next sequence and the progress count, and
+can interleave videos with reference pages. The build fails on an unknown id in
+`path` and warns about any page left out of it.
 
 **Content is never edited in markup.** If you find yourself editing
 `index.html`, stop — your change will be overwritten on the next build. Edit
@@ -80,15 +84,14 @@ The annual pass is usually four edits:
    The review date and version render in the cover block and the footer, so a
    reader can always tell how stale the page is.
 2. **Check the dated facts.** Anything that could drift: the 7-business-day
-   draft deadline, the 36–48 hour posting window, `Max Downloads: 1`,
-   attachment ceilings, and the standard permission set in
-   `12-permissions.json`.
+   draft deadline, the 36–48 hour posting window, attachment ceilings, and
+   the standard permission set in `02-your-account.json`.
 3. **Re-check the vendor links.** See *Verifying links* below. ExamSoft
    reorganises its support site and has already removed one video this page
    used to depend on.
-4. **Clear or update the maintainer TODOs.** Search the content for
-   `"type": "todo"`. Each one is a decision waiting on OME; they render as
-   visible purple callouts so they cannot be quietly forgotten.
+4. **Clear or update the maintainer TODOs.** The build prints every one at
+   the end of its output. They come from `"type": "todo"` blocks and from
+   `maintainerTodos` in `site.json`. None of them appear on the site.
 
 Then rebuild and commit:
 
@@ -101,9 +104,9 @@ git add -A && git commit -m "Content review for AY 2027-2028"
 
 ## Adding a new section
 
-1. Create `content/sections/15-your-topic.json`. The numeric prefix sets the
-   order in both the sidebar and the page — that is the only thing controlling
-   sequence, so renumbering files reorders the training.
+1. Create `content/sections/08-your-topic.json`. The numeric prefix sets its
+   place in the sidebar. Add its `id` to `path` in `site.json` to put it in the
+   Previous/Next sequence.
 2. Give it the four required keys:
 
 ```json
@@ -134,7 +137,7 @@ missing required key rather than producing a broken page.
 | `steps` | `{ items: [{ t, d }] }` | A numbered procedure. `t` is the action, `d` the detail |
 | `timeline` | `{ items: [{ when, who, what, detail }] }` | A dated sequence, e.g. the exam cycle |
 | `callout` | `{ tone, title, text }` | Emphasis. `tone` is `critical`, `warn`, `note`, or `jabsom` |
-| `todo` | `{ text }` | A maintainer decision. Renders visibly, on screen and in print |
+| `todo` | `{ text }` | A maintainer decision. Not rendered; printed by the build |
 | `table` | `{ caption, cols: [], rows: [[]] }` | Tabular facts. First cell of each row becomes a row header |
 | `figure` | `{ src, alt, caption, source, note, flag }` | One screenshot |
 | `figurepair` | `{ caption, source, items: [{ src, alt, label }] }` | Two screenshots side by side, e.g. before/after |

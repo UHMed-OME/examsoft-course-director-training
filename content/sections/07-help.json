@@ -3,32 +3,78 @@
   "navLabel": "Getting help",
   "title": "Getting help",
   "blocks": [
-    { "type": "contacts" },
+    {
+      "type": "contacts"
+    },
     {
       "type": "callout",
-      "tone": "critical",
+      "tone": "note",
       "title": "OME files vendor tickets",
       "text": "If something looks like an ExamSoft defect, send it to Jesse. Tickets from OME carry the institution context the vendor needs."
     },
     {
       "type": "table",
       "caption": "Where to take a problem",
-      "cols": ["Situation", "Contact"],
+      "cols": [
+        "Situation",
+        "Contact"
+      ],
       "rows": [
-        ["Can't sign in, or account-not-found error", "Jesse Thompson, OME"],
-        ["Permissions wrong or a portal area missing", "Jesse Thompson, OME"],
-        ["Need a new category in the tree", "Jesse Thompson, OME"],
-        ["Student accounts or roster issues", "Angel Oasay, OME pre-clerkship"],
-        ["Draft handoff, preview, or proctor materials", "OME pre-clerkship staff"],
-        ["Something failing during an exam", "The proctor, immediately"],
-        ["Suspected ExamSoft defect", "Jesse Thompson (files the ticket)"]
+        [
+          "Can't sign in, or account-not-found error",
+          "Jesse Thompson, OME"
+        ],
+        [
+          "Permissions wrong or a portal area missing",
+          "Jesse Thompson, OME"
+        ],
+        [
+          "Need a new category in the tree",
+          "Jesse Thompson, OME"
+        ],
+        [
+          "Student accounts or roster issues",
+          "Angel Oasay, OME pre-clerkship"
+        ],
+        [
+          "Draft handoff, preview, or proctor materials",
+          "OME pre-clerkship staff"
+        ],
+        [
+          "Something failing during an exam",
+          "The proctor, immediately"
+        ],
+        [
+          "Suspected ExamSoft defect",
+          "Jesse Thompson (files the ticket)"
+        ]
+      ]
+    },
+    {
+      "type": "links",
+      "title": "Optional: longer ExamSoft webinars",
+      "items": [
+        {
+          "label": "Preparing for a new semester",
+          "url": "https://www.youtube.com/watch?v=6g2hihZibKU",
+          "note": "63 min. General ExamSoft webinar recorded by Turnitin."
+        },
+        {
+          "label": "The complete guide to preparing for exam day",
+          "url": "https://www.youtube.com/watch?v=Ofh_rRoeFxs",
+          "note": "61 min. General ExamSoft webinar recorded by Turnitin. At JABSOM, OME posts your exam."
+        }
       ]
     },
     {
       "type": "links",
       "title": "Vendor reference",
       "items": [
-        { "label": "Legacy Portal section index", "url": "https://support.examsoft.com/hc/en-us/sections/4730887054093-Legacy-Portal", "note": "Every Legacy article, grouped by topic." }
+        {
+          "label": "Legacy Portal section index",
+          "url": "https://support.examsoft.com/hc/en-us/sections/4730887054093-Legacy-Portal",
+          "note": "Every Legacy article, grouped by topic."
+        }
       ]
     }
   ]
